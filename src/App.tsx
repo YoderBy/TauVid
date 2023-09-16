@@ -3,8 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 import {Show, Grid, GridItem, Button, ButtonGroup } from '@chakra-ui/react'
 import NavBar from './components/NavBar';
+import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
+
+
+
 function App() {
-  return (<>
+return (<>
     <NavBar></NavBar>
     <Grid templateAreas={{
       base:`"nav" "main"`,

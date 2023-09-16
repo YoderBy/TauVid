@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-import { ChakraProvider } from '@chakra-ui/react'
+import theme from './theme';
+import { ColorModeScript, ChakraProvider } from '@chakra-ui/react'
 // 1. import `ChakraProvider` component
 
 const root = ReactDOM.createRoot(
@@ -13,7 +13,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode}></ColorModeScript>
       <App />
     </ChakraProvider>
   </React.StrictMode>
