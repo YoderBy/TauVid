@@ -21,6 +21,7 @@ export interface Video {
 
 const used_indices: string[] = [];
 const useVideos = ({ refreshing }: { refreshing: boolean }) => {
+  const [isLoading, setLoading] = useState(false);
   const [videos, setVideos] = useState<Video[]>([]);
   const check = (indices: string[], id: string) => {
     indices.forEach((e) => {
@@ -33,15 +34,16 @@ const useVideos = ({ refreshing }: { refreshing: boolean }) => {
 
   useEffect(() => {
     console.log('Resampling videos in useVideos hook.');
+    setLoading(true);
     setVideos([]);
     const sampledVideos: Video[] = [];
-    const maxSampleSize = 150;
+    const maxSampleSize = 500;
     let totalItemsProcessed = 0;
 
     for (let i = 0; i < maxSampleSize; i++) {
 
       const randomIndex = Math.floor(Math.random() * data.length);
-      const h = Math.floor(Math.random() * 1000 + 500);
+      const h = 416;
       const w = Math.floor(Math.random() * 1000 + 500);
       const vid = data[randomIndex];
       used_indices.push(vid.id);
@@ -68,9 +70,10 @@ const useVideos = ({ refreshing }: { refreshing: boolean }) => {
     }
     console.log(new Set(sampledVideos.map(v => v.id)).size !== sampledVideos.length);
     setVideos(sampledVideos);
+    setLoading(false);
   }, [refreshing]); // Refresh the videos when the 'refreshing' prop changes
 
-  return videos;
+  return {videos, isLoading};
 };
 
 export default useVideos;
