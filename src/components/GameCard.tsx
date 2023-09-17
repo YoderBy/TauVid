@@ -1,4 +1,4 @@
-import { Card, CardBody, Heading, Image } from "@chakra-ui/react"
+import { Text, Card, CardBody, Heading, Image, Box, Link } from "@chakra-ui/react"
 import { Video } from "../Hooks/useVideos"
 
 interface Props{
@@ -7,9 +7,13 @@ interface Props{
 const GameCard = ({video} : Props)=>{
     return (
         <Card overflow={'hidden'} borderRadius={'10px'}>
-            <Image src = {video.thumbnailUrl}></Image>
+            <Box>
+      <Link href={video.detailUrl} isExternal>
+            <Image src={video.thumbnailUrl}></Image></Link></Box>
             <CardBody>
-                <Heading fontSize={'2xl'}>{video.title}</Heading>
+                <Heading dir='rtl' fontSize={{ xl: 'sm', lg: 'md', md: "xl", sm: '3xl' }}>{video.title}</Heading>
+                <Text dir='rtl'fontSize={'xx-small'}>{video.name}</Text>    
+                <Text dir='rtl' fontSize={'xx-small'}>{video.faculty}</Text>    
             </CardBody>
         </Card>
     )

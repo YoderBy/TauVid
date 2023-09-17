@@ -1,32 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import data from './assets/Panopto_data.json';
-import {Show, Grid, GridItem, Button, ButtonGroup } from '@chakra-ui/react'
-import NavBar from './components/NavBar';
-import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
-import GameGrid from './components/GameGrid';
+// App.tsx
 
+import React, { useState } from 'react';
+import { Grid, GridItem, Show } from '@chakra-ui/react';
+import NavBar from './components/NavBar';
+import GameGrid from './components/GameGrid';
+import RefreshButton from './components/RefreshButton';
 
 function App() {
-const dat = {data};
-  
-return (<>
-    <NavBar></NavBar>
-    <Grid templateAreas={{
-      base:`"nav" "main"`,
-      lg: `"nav nav" "aside main"`
-      }
-    }>
-      
-      <GridItem area='nav'></GridItem>
-      <Show above='lg'><GridItem area='aside' bg = 'white' display={'none'}></GridItem> </Show>
-      <GridItem area='main' bg = 'pearl'>
-      <GameGrid></GameGrid>
-      </GridItem>
-    </Grid>
+  const [refreshing, setRefreshing] = useState(false);
+
+  const handleRefresh = () => {
+    console.log('Refreshing triggered in App component.');
+    setRefreshing(true);
+    setTimeout(()=>{
+      setRefreshing(false);
+    },100);
+  };
+
+  return (
+    <>
+      <NavBar onRefresh={handleRefresh} />
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
+      >
+        <GridItem area="nav"></GridItem>
+        <Show above="lg">
+          <GridItem area="aside" bg="white" display={'none'}></GridItem>
+        </Show>
+        <GridItem area="main" bg="pearl">
+          <GameGrid refreshing={refreshing} />
+        </GridItem>
+      </Grid>
     </>
-    )
+  );
 }
 
 export default App;
