@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import theme from './theme';
-import { ColorModeScript, ChakraProvider } from '@chakra-ui/react'
+import { ColorModeScript, ChakraProvider, extendTheme } from '@chakra-ui/react'
 // 1. import `ChakraProvider` component
 
 const root = ReactDOM.createRoot(
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={extendTheme({ direction: 'rtl' })}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode}></ColorModeScript>
       <App />
     </ChakraProvider>
