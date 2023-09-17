@@ -11,8 +11,8 @@ const GameCard = ({video} : Props)=>{
       <Link href={video.detailUrl} isExternal>
             <Image src={video.thumbnailUrl}></Image></Link></Box>
             <CardBody>
-                <Heading dir='rtl' fontSize={{ xl: 'sm', lg: 'md', md: "xl", sm: '3xl' }}>{video.title}</Heading>
-                <Text dir='rtl'fontSize={'xx-small'}>{video.name}</Text>    
+                <Text dir='rtl' fontSize={{ xl: 'sm', lg: 'md', md: "md", sm: 'md' }}>{video.name}</Text>
+                <Text dir='rtl'fontSize={'md'}>{video.title}</Text>    
                 <Text dir='rtl' fontSize={'xx-small'}>{video.faculty}</Text>    
             </CardBody>
         </Card>
