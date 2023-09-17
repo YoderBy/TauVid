@@ -1,18 +1,15 @@
 
 import { useEffect, useState } from 'react';
 import useVideos from '../Hooks/useVideos';
+import { SimpleGrid } from '@chakra-ui/react';
+import GameCard from './GameCard';
     const GameGrid = () => {
         const {videos} = useVideos();
     return (
     <>
-    <ul>
-        {videos.map(vid => <>   
-        {/* <li key={vid.id}>{vid.name}</li> */}
-        <li>{vid.title}</li>
-        {/* <li>{vid.detailUrl}</li> */}
-        </>
-        )}
-    </ul>
+    <SimpleGrid columns={3} spacing = {10}>
+        {videos.map(vid => <GameCard  key = {vid.id} video={vid}/>)}
+    </SimpleGrid>
     </>
 )}
 
