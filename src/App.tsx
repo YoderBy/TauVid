@@ -19,9 +19,9 @@ return (<>
       }
     }>
       
-      <GridItem area='nav'>Nav</GridItem>
-      <Show above='lg'><GridItem area='aside' bg = 'gold'>Aside</GridItem> </Show>
-      <GridItem area='main' bg = 'dodgerblue'>
+      <GridItem area='nav'></GridItem>
+      <Show above='lg'><GridItem area='aside' bg = 'white' display={'none'}></GridItem> </Show>
+      <GridItem area='main' bg = 'pearl'>
       <GameGrid></GameGrid>
       </GridItem>
     </Grid>

@@ -6,10 +6,10 @@ interface Props{
 }
 const GameCard = ({video} : Props)=>{
     return (
-        <Card>
+        <Card overflow={'hidden'} borderRadius={'10px'}>
             <Image src = {video.thumbnailUrl}></Image>
             <CardBody>
-                <Heading>{video.title}</Heading>
+                <Heading fontSize={'2xl'}>{video.title}</Heading>
             </CardBody>
         </Card>
     )

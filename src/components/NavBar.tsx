@@ -6,7 +6,7 @@ const NavBar = () => {
     return (
         <HStack>
             <ColorModeSwitch></ColorModeSwitch>
-            <Heading alignSelf={'center'}>יוסף בן יהודה</Heading>
+            <Heading paddingLeft={'30%'}>יוסף בן יהודה</Heading>
         </HStack>
     )
 }
