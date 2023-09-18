@@ -26,13 +26,13 @@ function App() {
         }}
         templateColumns={{
           base: '1fr',
-          lg: '200px 1fr'
+          md: '200px 1fr'
         }}
       >
         <GridItem area="nav">
           <NavBar onRefresh={handleRefresh} />
         </GridItem>
-        <Show>
+        <Show above = "md">
         <GridItem 
         dir="rtl" paddingX = {'5px'} area="aside"><FacultiesList/></GridItem>
         </Show>
