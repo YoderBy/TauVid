@@ -11,7 +11,7 @@ const GameCard = ({video} : Props)=>(
                 </Link>
         <CardBody>
             <Text noOfLines={2} dir='rtl' fontSize={{ xl: 'md', lg: 'md', md: "md", sm: 'md' }}>{video.name}</Text>
-            <HStack justifyContent='space-around'>
+            <HStack justifyContent='space-  around'>
             <Text noOfLines={2} dir='rtl' fontSize={'small'}>{video.title}</Text>
             <Text noOfLines={2} dir='rtl' fontSize={'xx-small'}>{video.faculty}</Text>
             </HStack>

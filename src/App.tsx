@@ -6,6 +6,8 @@ import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import RefreshButton from './components/RefreshButton';
 import FacultiesList from './components/FacultiesList';
+import { Faculty } from './Hooks/useFaculties';
+import { factory } from 'typescript';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);
@@ -17,10 +19,11 @@ function App() {
       setRefreshing(false);
     },100);
   };
-
+  const [selfaculty, setSelFaculty] = useState<Faculty | null>(null)
+  
   return (
     <>
-      <Grid 
+      <Grid dir="rtl"
         templateAreas={{
           base: `"nav nav" "aside main"`,
         }}
@@ -34,10 +37,11 @@ function App() {
         </GridItem>
         <Show above = "md">
         <GridItem 
-        dir="rtl" paddingX = {'5px'} area="aside"><FacultiesList/></GridItem>
+        dir="rtl" paddingX = {'5px'} area="aside"><FacultiesList 
+        onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
         </Show>
         <GridItem area="main">
-          <GameGrid refreshing={refreshing} />
+          <GameGrid selectedFaculty = {selfaculty} refreshing={refreshing} />
         </GridItem>
         </Grid>
     </>

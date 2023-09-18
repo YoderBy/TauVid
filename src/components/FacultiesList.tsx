@@ -1,14 +1,18 @@
-import { List, Text, ListItem } from "@chakra-ui/react";
+import { List, Text, ListItem, Button } from "@chakra-ui/react";
 import useFaculties from "../Hooks/useFaculties";
 import { Faculty } from "../Hooks/useFaculties";
-const FacultiesList = () =>
+interface Props
+{
+    onSelect: (faculty: Faculty)=>void;
+}
+const FacultiesList = ({onSelect}: Props) =>
 {
     const genre = useFaculties();
     return (<List >
         {genre.map(gen=> <ListItem paddingY = {'10px'}  key = {gen.id}>
-        <Text fontSize={'sm'}>   
+        <Button variant = 'link' onClick={()=>onSelect(gen)} fontSize={'sm'}>   
             {gen.name}
-        </Text>
+        </Button>
         </ListItem>)}
     </List>
     )

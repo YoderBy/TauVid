@@ -4,12 +4,14 @@ import useVideos, {Video} from '../Hooks/useVideos';
 import { SimpleGrid } from '@chakra-ui/react';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
+import { Faculty } from '../Hooks/useFaculties';
 interface Props {
   refreshing: boolean;
+  selectedFaculty: Faculty | null;
 }
 
-const GameGrid: React.FC<Props> = ({ refreshing }) => {
-        const {videos, isLoading} = useVideos({ refreshing});
+const GameGrid: React.FC<Props> = ({ refreshing, selectedFaculty }:Props) => {
+        const {videos, isLoading} = useVideos(refreshing, selectedFaculty);
         const Skeletons = [1,2,3,4,5,6];
 
 return (
