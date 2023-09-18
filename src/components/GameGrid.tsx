@@ -16,9 +16,9 @@ return (
     <>
       <SimpleGrid
         dir="rtl"
-        padding={'10px'}
-        columns={{ sm: 2, md: 4, lg: 5, xl: 8 }}
-        spacing={10}
+        padding={'5px'}
+        columns={{ sm: 1, md: 2, lg: 4, xl: 6 }}
+        spacing={3}
       >
         {videos.map((vid:Video) => (
           <GameCard key={vid.id} video={vid} />

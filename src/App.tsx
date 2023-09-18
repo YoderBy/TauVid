@@ -21,16 +21,20 @@ function App() {
   return (
     <>
       <Grid 
-        dir="rtl"
         templateAreas={{
-          base: `"nav" "main"`,
-          lg: `"nav nav" "aside main"`,
+          base: `"nav nav" "aside main"`,
+        }}
+        templateColumns={{
+          base: '1fr',
+          lg: '200px 1fr'
         }}
       >
         <GridItem area="nav">
           <NavBar onRefresh={handleRefresh} />
         </GridItem>
-        <Show above = 'lg'><GridItem area="aside"><FacultiesList/></GridItem>
+        <Show>
+        <GridItem 
+        dir="rtl" paddingX = {'5px'} area="aside"><FacultiesList/></GridItem>
         </Show>
         <GridItem area="main">
           <GameGrid refreshing={refreshing} />
