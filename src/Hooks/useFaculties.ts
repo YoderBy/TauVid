@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import data from '../assets/Panopto_data_faculties.json';
 
-export interface Genre {
+export interface Faculty {
 id: number;
 name: string;
 }
@@ -10,7 +10,7 @@ name: string;
 const useFaculties = ()=>{
     // useVideos.tsx
     const [isLoading, setLoading] = useState(false);
-  const [genre, setGenre] = useState<Genre[]>([]);
+  const [Faculty, setFaculty] = useState<Faculty[]>([]);
   const check = (indices: string[], id: string) => {
     indices.forEach((e) => {
       if (e === id) {
@@ -21,15 +21,15 @@ const useFaculties = ()=>{
   };
 
   useEffect(() => {
-    const Genres: Genre[] = [];
-    data.forEach(ent=> Genres.push(
+    const Facultys: Faculty[] = [];
+    data.forEach(ent=> Facultys.push(
         {id:parseInt(ent.id), name: ent.faculty}
         )
     )
-    setGenre(Genres);
+    setFaculty(Facultys);
     
   }, []); // Refresh the videos when the 'refreshing' prop changes
 
-  return {genre};
+  return (Faculty)
 }
 export default useFaculties

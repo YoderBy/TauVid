@@ -12,7 +12,7 @@ export interface Video {
     detailUrl: string;
     detailTitle: {};
     folderName: string;
-    id: Number;
+    id: number;
     number: string;
     name: string;
     faculty: string;
@@ -37,7 +37,7 @@ const useVideos = ({ refreshing }: { refreshing: boolean }) => {
     setLoading(true);
     setVideos([]);
     const sampledVideos: Video[] = [];
-    const maxSampleSize = 500;
+    const maxSampleSize = 50;
     let totalItemsProcessed = 0;
 
     for (let i = 0; i < maxSampleSize; i++) {

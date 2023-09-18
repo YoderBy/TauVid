@@ -5,6 +5,7 @@ import { Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import RefreshButton from './components/RefreshButton';
+import FacultiesList from './components/FacultiesList';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);
@@ -19,21 +20,22 @@ function App() {
 
   return (
     <>
-      <NavBar onRefresh={handleRefresh} />
-      <Grid
+      <Grid 
+        dir="rtl"
         templateAreas={{
           base: `"nav" "main"`,
           lg: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area="nav"></GridItem>
-        <Show above="lg">
-          <GridItem area="aside" bg="white" display={'none'}></GridItem>
+        <GridItem area="nav">
+          <NavBar onRefresh={handleRefresh} />
+        </GridItem>
+        <Show above = 'lg'><GridItem area="aside"><FacultiesList/></GridItem>
         </Show>
-        <GridItem area="main" bg="pearl">
+        <GridItem area="main">
           <GameGrid refreshing={refreshing} />
         </GridItem>
-      </Grid>
+        </Grid>
     </>
   );
 }

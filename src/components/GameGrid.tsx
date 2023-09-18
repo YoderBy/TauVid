@@ -1,6 +1,6 @@
 // GameGrid.tsx
 
-import useVideos from '../Hooks/useVideos';
+import useVideos, {Video} from '../Hooks/useVideos';
 import { SimpleGrid } from '@chakra-ui/react';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
@@ -20,8 +20,7 @@ return (
         columns={{ sm: 2, md: 4, lg: 5, xl: 8 }}
         spacing={10}
       >
-        {isLoading && Skeletons.map(s=> <GameCardSkeleton key = {s}></GameCardSkeleton>)}
-        {videos.map((vid) => (
+        {videos.map((vid:Video) => (
           <GameCard key={vid.id} video={vid} />
         ))}
       </SimpleGrid>
