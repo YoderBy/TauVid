@@ -10,10 +10,8 @@ interface Props {
   selectedFaculty: Faculty | null;
 }
 
-const GameGrid: React.FC<Props> = ({ refreshing, selectedFaculty }:Props) => {
-        const {videos, isLoading} = useVideos(refreshing, selectedFaculty);
-        const Skeletons = [1,2,3,4,5,6];
-
+const GameGrid: React.FC<Props> = ({refreshing, selectedFaculty}) => {
+        const {videos, isLoading} = useVideos(refreshing, selectedFaculty)
 return (
     <>
       <SimpleGrid

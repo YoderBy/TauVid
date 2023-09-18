@@ -19,13 +19,15 @@ function App() {
       setRefreshing(false);
     },100);
   };
+  
   const [selfaculty, setSelFaculty] = useState<Faculty | null>(null)
   
   return (
     <>
       <Grid dir="rtl"
         templateAreas={{
-          base: `"nav nav" "aside main"`,
+          lg: `"nav nav" "aside main"`,
+          base: `"nav" "main"`
         }}
         templateColumns={{
           base: '1fr',
