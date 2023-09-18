@@ -11,8 +11,9 @@ interface Props {
 
 const NavBar: React.FC<Props> = ({ onRefresh }) => {
   return (
+
     <HStack justifyContent={'space-between'} padding={'10px'}>
-        <Button colorScheme="blue" onClick={onRefresh}>
+      <Button colorScheme="blue" onClick={onRefresh}>
         Refresh Videos
       </Button>
       <ColorModeSwitch />
