@@ -12,18 +12,18 @@ export interface Video {
     detailUrl: string;
     detailTitle: {};
     folderName: string;
-    id: string;
+    id: Number;
     number: string;
     name: string;
     faculty: string;
     facultyNumber: string;
 }
 
-const used_indices: string[] = [];
+const used_indices: number[] = [];
 const useVideos = ({ refreshing }: { refreshing: boolean }) => {
   const [isLoading, setLoading] = useState(false);
   const [videos, setVideos] = useState<Video[]>([]);
-  const check = (indices: string[], id: string) => {
+  const check = (indices: number[], id: number) => {
     indices.forEach((e) => {
       if (e === id) {
         return false;
@@ -46,7 +46,7 @@ const useVideos = ({ refreshing }: { refreshing: boolean }) => {
       const h = 416;
       const w = Math.floor(Math.random() * 1000 + 500);
       const vid = data[randomIndex];
-      used_indices.push(vid.id);
+      used_indices.push(parseInt(vid.id));
       if (sampledVideos.length < maxSampleSize && check(used_indices, vid.id)) {
         vid.thumbnailUrl = (vid.thumbnailUrl=== "file:///C:/Panopto/Images/no_thumbnail.svg") ? `http://placekitten.com/${w}/${h}`: vid.thumbnailUrl;
         
@@ -60,7 +60,7 @@ const useVideos = ({ refreshing }: { refreshing: boolean }) => {
           detailUrl: vid.detailUrl,
           detailTitle: vid.detailTitle,
           folderName: vid.folderName,
-          id: vid.id,
+          id: parseInt(vid.id),
           number: vid.number,
           name: vid.name,
           faculty: vid.faculty,
