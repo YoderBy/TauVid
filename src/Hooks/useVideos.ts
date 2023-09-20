@@ -39,9 +39,6 @@ const useVideos = (refreshing : boolean, SelectedFaculty: Faculty | null) => {
         return false;
       }
     });
-    console.log(SelectedFaculty);
-    console.log(vid.faculty + "  " + vid.facultyNumber);
-    console.log('got it');
     return true;
     
 
@@ -94,7 +91,6 @@ const useVideos = (refreshing : boolean, SelectedFaculty: Faculty | null) => {
         });
       }
     }
-    console.log(new Set(videos.map(v => v.id)).size !== sampledVideos.length);
     setVideos(sampledVideos);
     setLoading(false);
   }, [SelectedFaculty, refreshing]); 

@@ -10,7 +10,7 @@ const FacultiesList = ({onSelect}: Props) =>
     const genre = useFaculties();
     return (<List >
         {genre.map(gen=> <ListItem paddingY = {'10px'}  key = {gen.id}>
-        <Button variant = 'link' onClick={()=>onSelect(gen)} fontSize={'sm'}>   
+        <Button variant = 'link' onClick={()=>onSelect(gen)} fontSize={{sm: "xx-small", lg: "sm"}}>   
             {gen.name}
         </Button>
         </ListItem>)}

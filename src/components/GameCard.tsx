@@ -5,9 +5,9 @@ interface Props{
     video: Video
 }
 const GameCard = ({video} : Props)=>(
-    <Card width='100%' overflow={'hidden'} borderRadius={'10px'}>
+    <Card width='100%' overflow={'hidden'}  padding = {{sm:'10px', lg:0}}borderRadius={'10px'}>
             <Link href={video.detailUrl} isExternal>
-            <Image maxH={{sm: 'fr1', md: '200px'}} objectFit='cover' src={video.thumbnailUrl}></Image>
+            <Image maxH={{sm: 'fr1', lg: '200px'}} objectFit='cover' src={video.thumbnailUrl}></Image>
                 </Link>
         <CardBody>
             <Text noOfLines={2} dir='rtl' fontSize={{ xl: 'md', lg: 'md', md: "md", sm: 'md' }}>{video.name}</Text>

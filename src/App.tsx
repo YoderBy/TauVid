@@ -26,18 +26,17 @@ function App() {
     <>
       <Grid dir="rtl"
         templateAreas={{
-          lg: `"nav nav" "aside main"`,
-          base: `"nav" "main"`
+          base: `"nav" "main"`,
+          md: `"nav nav" "aside main"`,
         }}
         templateColumns={{
-          base: '1fr',
-          md: '200px 1fr'
+          base: '1fr'
         }}
       >
         <GridItem area="nav">
           <NavBar onRefresh={handleRefresh} />
         </GridItem>
-        <Show above = "md">
+        <Show above='sm'>
         <GridItem 
         dir="rtl" paddingX = {'5px'} area="aside"><FacultiesList 
         onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>

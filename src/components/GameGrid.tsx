@@ -17,7 +17,7 @@ return (
       <SimpleGrid
         dir="rtl"
         padding={'5px'}
-        columns={{ sm: 1, md: 2, lg: 4, xl: 6 }}
+        columns={{ sm: 1, md: 1, lg: 4, xl: 6 }}
         spacing={7}
       >
         {videos.map((vid:Video) => (
