@@ -11,7 +11,9 @@ import { factory } from 'typescript';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);
-
+  const [selfaculty, setSelFaculty] = useState<Faculty | null>(null)
+  const [sidebarOpen, setSideBarOpen] = useState(false);
+  
   const handleRefresh = () => {
     console.log('Refreshing triggered in App component.');
     setRefreshing(true);
@@ -20,8 +22,10 @@ function App() {
     },100);
   };
   
-  const [selfaculty, setSelFaculty] = useState<Faculty | null>(null)
-  
+
+  const handleViewSidebar = () => {
+    setSideBarOpen(!sidebarOpen);
+  };
   return (
     <>
       <Grid dir="rtl"
@@ -38,8 +42,8 @@ function App() {
         </GridItem>
         <Show above='sm'>
         <GridItem 
-        dir="rtl" paddingX = {'5px'} area="aside"><FacultiesList 
-        onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
+        dir="rtl" paddingX = {'5px'} area="aside">
+        <FacultiesList isOpen = {sidebarOpen} onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
         </Show>
         <GridItem area="main">
           <GameGrid selectedFaculty = {selfaculty} refreshing={refreshing} />

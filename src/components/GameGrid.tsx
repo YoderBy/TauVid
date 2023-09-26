@@ -1,6 +1,6 @@
 // GameGrid.tsx
 
-import useVideos, {Video} from '../Hooks/useVideos';
+import useVideos, { Video } from '../Hooks/useVideos';
 import { SimpleGrid } from '@chakra-ui/react';
 import GameCard from './GameCard';
 import GameCardSkeleton from './GameCardSkeleton';
@@ -10,9 +10,9 @@ interface Props {
   selectedFaculty: Faculty | null;
 }
 
-const GameGrid: React.FC<Props> = ({refreshing, selectedFaculty}) => {
-        const {videos, isLoading} = useVideos(refreshing, selectedFaculty)
-return (
+const GameGrid: React.FC<Props> = ({ refreshing, selectedFaculty }) => {
+  const sampledVideo = useVideos(refreshing, selectedFaculty)
+  return (
     <>
       <SimpleGrid
         dir="rtl"
@@ -20,7 +20,7 @@ return (
         columns={{ sm: 1, md: 1, lg: 4, xl: 6 }}
         spacing={7}
       >
-        {videos.map((vid:Video) => (
+        {sampledVideo.map((vid: Video) => (
           <GameCard key={vid.id} video={vid} />
         ))}
       </SimpleGrid>

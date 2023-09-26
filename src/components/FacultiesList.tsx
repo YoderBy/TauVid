@@ -3,12 +3,16 @@ import useFaculties from "../Hooks/useFaculties";
 import { Faculty } from "../Hooks/useFaculties";
 interface Props
 {
+    isOpen: boolean;
     onSelect: (faculty: Faculty)=>void;
 }
-const FacultiesList = ({onSelect}: Props) =>
+const FacultiesList = ({onSelect , isOpen}: Props) =>
 {
+    const display = isOpen ? "closedSideBar" : "openedSideBar";
     const genre = useFaculties();
-    return (<List >
+    return (
+    
+    <List className={display}>
         {genre.map(gen=> <ListItem paddingY = {'10px'}  key = {gen.id}>
         <Button variant = 'link' onClick={()=>onSelect(gen)} fontSize={{sm: "xx-small", lg: "sm"}}>   
             {gen.name}
