@@ -25,19 +25,13 @@ const useVideos = (refreshing: boolean, SelectedFaculty: Faculty | null) => {
   const used_indices: string[] = [];
 
   const check = (indices: string[], id: string, vid: Video) => {
-
     if (SelectedFaculty) {
-      if (vid.facultyNumber != SelectedFaculty.id &&
-        vid.faculty != SelectedFaculty.name) {
-        return false
-      }
-    }
-    indices.forEach((e) => {
-      if (e === id) {
+      if (vid.facultyNumber !== SelectedFaculty.id &&
+          vid.faculty !== SelectedFaculty.name) {
         return false;
       }
-    });
-    return true;
+    }
+    return !indices.some(e => e === id);
   };
 
   const sampledVideos: Video[] = [];
@@ -75,7 +69,10 @@ const useVideos = (refreshing: boolean, SelectedFaculty: Faculty | null) => {
       });
     }
   }
+  
 
+
+  console.log("Use Videos");
   console.log(sampledVideos);
   return sampledVideos;
 };

@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useState } from 'react';
-import { Grid, GridItem, Show } from '@chakra-ui/react';
+import { Grid, GridItem, HStack, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import RefreshButton from './components/RefreshButton';
@@ -30,17 +30,16 @@ function App() {
     <>
       <Grid dir="rtl"
         templateAreas={{
-          base: `"nav" "main"`,
+          base: `"nav nav" "aside main"`,
+          sm: `"nav nav" "aside main "`,
           md: `"nav nav" "aside main"`,
-        }}
-        templateColumns={{
-          base: '1fr'
         }}
       >
         <GridItem area="nav">
           <NavBar onRefresh={handleRefresh} />
         </GridItem>
-        <Show above='sm'>
+        <Show>
+       
         <GridItem 
         dir="rtl" paddingX = {'5px'} area="aside">
         <FacultiesList isOpen = {sidebarOpen} onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
