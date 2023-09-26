@@ -9,13 +9,14 @@ const FacultiesList = ({ onSelect, isOpen }: Props) => {
     const display = isOpen ? "closedSideBar" : "openedSideBar";
     const genre = useFaculties();
     return (
-        <List >
-            {genre.map(gen => 
-            <ListItem paddingY={'10px'} key={gen.id}>
-                <Button variant='link' onClick={() => onSelect(gen)} fontSize={'xx-small'}>
-                    {gen.name}
-                </Button>
-            </ListItem>)}
+        <List overflowWrap={'break-word'} w={{ base: "100px", md: "200px" }}>
+            {genre.map(gen =>
+                <ListItem  border="1px" paddingY={'10px'} key={gen.id}>
+                    <Button maxWidth="100%"  // Set maximum width
+                        whiteSpace="normal" variant='link' onClick={() => onSelect(gen)} fontSize={{ base: "10px", md: "15px" }}>
+                        {gen.name}
+                    </Button>
+                </ListItem>)}
         </List>
     )
 }

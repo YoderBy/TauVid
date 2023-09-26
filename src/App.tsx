@@ -41,7 +41,7 @@ function App() {
         <Show>
        
         <GridItem 
-        dir="rtl" paddingX = {'5px'} area="aside">
+        dir="rtl" w = {'3%'} paddingX = {'5px'} area="aside">
         <FacultiesList isOpen = {sidebarOpen} onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
         </Show>
         <GridItem area="main">
