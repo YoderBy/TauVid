@@ -10,11 +10,13 @@ const FacultiesList = ({ onSelect, selectedFaculty}: Props) => {
     return (
         <List overflowWrap={'break-word'} w={{ base: "100px", md: "200px" }}>
             {genre.map(gen =>
-                <ListItem  border="1px" paddingY={'10px'} key={gen.id}>
+                <ListItem
+                background={gen.id === selectedFaculty?.id ? '#f8f8ff' : ''} 
+                border="1px" paddingY={'10px'} key={gen.id}>
                     <Button 
                         maxWidth="100%" whiteSpace="normal" variant='link'
                         fontWeight={gen.id === selectedFaculty?.id ? 'bold' : 'normal'}
-                        background={gen.id === selectedFaculty?.id ? '#f8f8ff' : ''} 
+                        
                         onClick={() => onSelect(gen)} fontSize={{ base: "10px", md: "15px" }}>
                         {gen.name}
                     </Button>
