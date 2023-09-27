@@ -9,6 +9,8 @@ import FacultiesList from './components/FacultiesList';
 import { Faculty } from './Hooks/useFaculties';
 import { factory } from 'typescript';
 import FacultySelector from './components/FacultySelector';
+import SortSelector from './components/SortSelector';
+
 export interface DisplayQuery {
   faculty: Faculty | null;
   refreshing : boolean;
@@ -47,8 +49,12 @@ function App() {
               setDisplayQuery({...displayQuery, faculty:faculty})}} /></GridItem>
         </Show>
         <GridItem area="main">
-          <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
-          <GameGrid DisplayQuery={displayQuery} />
+          <HStack spacing = {'5px'} padding-left={'2px'} marginBottom={'5px'}>
+            <SortSelector selected_Faculty={displayQuery.faculty} onSelect=
+              {(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
+            <FacultySelector selected_Faculty={displayQuery.faculty} onSelect=
+              {(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
+          </HStack> <GameGrid DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>
