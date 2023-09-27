@@ -3,16 +3,16 @@
 import useVideos, { Video } from '../Hooks/useVideos';
 import { SimpleGrid } from '@chakra-ui/react';
 import GameCard from './GameCard';
+import { DisplayQuery } from '../App';
 import GameCardSkeleton from './GameCardSkeleton';
 import { Faculty } from '../Hooks/useFaculties';
 interface Props {
-  refreshing: boolean;
-  selectedFaculty: Faculty | null;
+  DisplayQuery: DisplayQuery;
 }
 
-const GameGrid: React.FC<Props> = ({ refreshing, selectedFaculty }) => {
+const GameGrid: React.FC<Props> = ({DisplayQuery }) => {
 
-  const sampledVideo = useVideos(refreshing, selectedFaculty) 
+  const sampledVideo = useVideos(DisplayQuery) 
   // get video[] object and render it
 
 return (

@@ -9,7 +9,7 @@ import FacultiesList from './components/FacultiesList';
 import { Faculty } from './Hooks/useFaculties';
 import { factory } from 'typescript';
 import FacultySelector from './components/FacultySelector';
-interface DisplayQuery {
+export interface DisplayQuery {
   faculty: Faculty | null;
   refreshing : boolean;
 
@@ -18,7 +18,7 @@ interface DisplayQuery {
 function App() {
   const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({faculty :null, refreshing: false})
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
-
+  
   const handleRefresh = () => {
     setDisplayQuery({...displayQuery, refreshing:true})
     // pass it down all the way to GameGrid
@@ -48,7 +48,7 @@ function App() {
         </Show>
         <GridItem area="main">
           <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
-          <GameGrid selectedFaculty={displayQuery.faculty} refreshing={displayQuery.refreshing} />
+          <GameGrid DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>

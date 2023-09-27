@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import data from '../assets/Panopto_data.json';
 import { Faculty } from "./useFaculties";
-
+import { DisplayQuery } from "../App";
 export interface Video {
   thumbnailUrl: string;
   duration: string;
@@ -21,14 +21,14 @@ export interface Video {
 }
 
 
-const useVideos = (refreshing: boolean, SelectedFaculty: Faculty | null) => {
+const useVideos = (DisplayQuery : DisplayQuery) => {
   const used_indices: string[] = [];
 
   const check = (indices: string[], id: string, vid: Video) => {
     //checks if the ramdonly selected video already selected, and if its faculty matches the requasted faculty
-    if (SelectedFaculty) {
-      if (vid.facultyNumber !== SelectedFaculty.id &&
-          vid.faculty !== SelectedFaculty.name) {
+    if (DisplayQuery.faculty) {
+      if (vid.facultyNumber !== DisplayQuery.faculty.id &&
+          vid.faculty !== DisplayQuery.faculty.name) {
         return false;
       }
     }
