@@ -9,16 +9,21 @@ import FacultiesList from './components/FacultiesList';
 import { Faculty } from './Hooks/useFaculties';
 import { factory } from 'typescript';
 import FacultySelector from './components/FacultySelector';
+interface DisplayQuery {
+  faculty: Faculty | null;
+  refreshing : boolean;
+
+}
 
 function App() {
-  const [refreshing, setRefreshing] = useState(false);// store the refreshing state
-  const [selectedFaculty, setSelectedFaculty] = useState<Faculty | null>(null); // stores faculty selection
-
+  const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({faculty :null, refreshing: false})
+  //this object store the faculty selection and the refreshing state, later it will store some courses info and such
 
   const handleRefresh = () => {
-    setRefreshing(true); // pass it down all the way to GameGrid
+    setDisplayQuery({...displayQuery, refreshing:true})
+    // pass it down all the way to GameGrid
     setTimeout(() => {
-      setRefreshing(false);
+      setDisplayQuery({...displayQuery, refreshing:false})
     }, 100);
   };
 
@@ -38,11 +43,12 @@ function App() {
         <Show above='sm'>
           <GridItem
             dir="rtl" w={'3%'} paddingX={'5px'} area="aside">
-            <FacultiesList selectedFaculty={selectedFaculty} onSelect={(faculty) => { setSelectedFaculty(faculty) }} /></GridItem>
+            <FacultiesList selectedFaculty={displayQuery.faculty} onSelect={(faculty) => { 
+              setDisplayQuery({...displayQuery, faculty:faculty})}} /></GridItem>
         </Show>
         <GridItem area="main">
-          <FacultySelector selected_Faculty={selectedFaculty} onSelect={(faculty) => { setSelectedFaculty(faculty) }} />
-          <GameGrid selectedFaculty={selectedFaculty} refreshing={refreshing} />
+          <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
+          <GameGrid selectedFaculty={displayQuery.faculty} refreshing={displayQuery.refreshing} />
         </GridItem>
       </Grid>
     </>
