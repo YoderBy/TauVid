@@ -8,6 +8,7 @@ import RefreshButton from './components/RefreshButton';
 import FacultiesList from './components/FacultiesList';
 import { Faculty } from './Hooks/useFaculties';
 import { factory } from 'typescript';
+import FacultySelector from './components/FacultySelector';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);// store the refreshing state
@@ -41,6 +42,7 @@ function App() {
         <FacultiesList selectedFaculty={selfaculty} onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
         </Show>
         <GridItem area="main">
+          <FacultySelector onSelect={(faculty)=> {setSelFaculty(faculty)}} />
           <GameGrid selectedFaculty = {selfaculty} refreshing={refreshing} />
         </GridItem>
         </Grid>
