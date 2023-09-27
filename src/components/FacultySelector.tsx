@@ -11,11 +11,15 @@ const FacultySelector = ({ onSelect, selected_Faculty }: Props) => {
     return (
         <Menu>
             <MenuButton  rightIcon={<ChevronDownIcon />} as={Button}>{
-            selected_Faculty?.name || 'פקולטות'}</MenuButton>
+            selected_Faculty?.name || 'פקולטות'
+            //changing the name inside the botton
+            }</MenuButton> 
             <MenuList>
                 {Faculties.map(faculty => 
                 <MenuItem onClick={() => onSelect(faculty)} key={faculty.id}>
-                    {faculty.name}
+                    {faculty.name
+                    //rendering an endless list
+                    }
                 </MenuItem>)}
             </MenuList>
         </Menu>

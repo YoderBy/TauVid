@@ -12,16 +12,16 @@ import FacultySelector from './components/FacultySelector';
 
 function App() {
   const [refreshing, setRefreshing] = useState(false);// store the refreshing state
-  const [selfaculty, setSelFaculty] = useState<Faculty | null>(null); // stores faculty selection
-  
-  
+  const [selectedFaculty, setSelectedFaculty] = useState<Faculty | null>(null); // stores faculty selection
+
+
   const handleRefresh = () => {
     setRefreshing(true); // pass it down all the way to GameGrid
-    setTimeout(()=>{
+    setTimeout(() => {
       setRefreshing(false);
-    },100);
+    }, 100);
   };
-  
+
 
   return (
     <>
@@ -32,20 +32,19 @@ function App() {
           md: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area="nav"> 
+        <GridItem area="nav">
           <NavBar onRefresh={handleRefresh} />
         </GridItem>
-        <Show>
-       
-        <GridItem 
-        dir="rtl" w = {'3%'} paddingX = {'5px'} area="aside"> 
-        <FacultiesList selectedFaculty={selfaculty} onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
+        <Show above='sm'>
+          <GridItem
+            dir="rtl" w={'3%'} paddingX={'5px'} area="aside">
+            <FacultiesList selectedFaculty={selectedFaculty} onSelect={(faculty) => { setSelectedFaculty(faculty) }} /></GridItem>
         </Show>
         <GridItem area="main">
-          <FacultySelector onSelect={(faculty)=> {setSelFaculty(faculty)}} />
-          <GameGrid selectedFaculty = {selfaculty} refreshing={refreshing} />
+          <FacultySelector selected_Faculty={selectedFaculty} onSelect={(faculty) => { setSelectedFaculty(faculty) }} />
+          <GameGrid selectedFaculty={selectedFaculty} refreshing={refreshing} />
         </GridItem>
-        </Grid>
+      </Grid>
     </>
   );
 }
