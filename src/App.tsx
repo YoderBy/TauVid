@@ -38,7 +38,7 @@ function App() {
        
         <GridItem 
         dir="rtl" w = {'3%'} paddingX = {'5px'} area="aside"> 
-        <FacultiesList onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
+        <FacultiesList selectedFaculty={selfaculty} onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
         </Show>
         <GridItem area="main">
           <GameGrid selectedFaculty = {selfaculty} refreshing={refreshing} />
