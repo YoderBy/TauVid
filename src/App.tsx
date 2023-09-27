@@ -10,39 +10,35 @@ import { Faculty } from './Hooks/useFaculties';
 import { factory } from 'typescript';
 
 function App() {
-  const [refreshing, setRefreshing] = useState(false);
-  const [selfaculty, setSelFaculty] = useState<Faculty | null>(null)
-  const [sidebarOpen, setSideBarOpen] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);// store the refreshing state
+  const [selfaculty, setSelFaculty] = useState<Faculty | null>(null); // stores faculty selection
+  
   
   const handleRefresh = () => {
-    console.log('Refreshing triggered in App component.');
-    setRefreshing(true);
+    setRefreshing(true); // pass it down all the way to GameGrid
     setTimeout(()=>{
       setRefreshing(false);
     },100);
   };
   
 
-  const handleViewSidebar = () => {
-    setSideBarOpen(!sidebarOpen);
-  };
   return (
     <>
       <Grid dir="rtl"
-        templateAreas={{
+        templateAreas={{ // need to fix those templates Areas / switch the UI lib
           base: `"nav nav" "aside main"`,
           sm: `"nav nav" "aside main "`,
           md: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area="nav">
+        <GridItem area="nav"> 
           <NavBar onRefresh={handleRefresh} />
         </GridItem>
         <Show>
        
         <GridItem 
-        dir="rtl" w = {'3%'} paddingX = {'5px'} area="aside">
-        <FacultiesList isOpen = {sidebarOpen} onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
+        dir="rtl" w = {'3%'} paddingX = {'5px'} area="aside"> 
+        <FacultiesList onSelect={(faculty)=> {setSelFaculty(faculty)}}/></GridItem>
         </Show>
         <GridItem area="main">
           <GameGrid selectedFaculty = {selfaculty} refreshing={refreshing} />

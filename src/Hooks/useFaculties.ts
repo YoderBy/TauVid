@@ -3,25 +3,18 @@ import { useEffect, useState } from "react";
 import data from '../assets/Panopto_data_faculties.json';
 
 export interface Faculty {
-id: string;
-name: string;
+  id: string;
+  name: string;
 }
+// retrive falculty[] object from json
+const useFaculties = () => {
 
-const useFaculties = ()=>{
-    // useVideos.tsx
-  const [isLoading, setLoading] = useState(false);
-  const [Faculty, setFaculty] = useState<Faculty[]>([]);
+  const Facultys: Faculty[] = [];
+  data.forEach(ent => Facultys.push( // data already has all the faculties
+    { id: ent.id, name: ent.faculty }
+  )
+  )
 
-  useEffect(() => {
-    const Facultys: Faculty[] = [];
-    data.forEach(ent=> Facultys.push(
-        {id:ent.id, name: ent.faculty}
-        )
-    )
-    setFaculty(Facultys);
-    
-  }, []); // Refresh the videos when the 'refreshing' prop changes
-
-  return (Faculty)
+  return (Facultys)
 }
 export default useFaculties

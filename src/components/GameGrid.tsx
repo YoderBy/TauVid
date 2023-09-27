@@ -11,10 +11,10 @@ interface Props {
 }
 
 const GameGrid: React.FC<Props> = ({ refreshing, selectedFaculty }) => {
-const sampledVideo = useVideos(refreshing, selectedFaculty)
 
-console.log("Game Gride");
-console.log(sampledVideo);
+  const sampledVideo = useVideos(refreshing, selectedFaculty) 
+  // get video[] object and render it
+
 return (
     <>
       <SimpleGrid
