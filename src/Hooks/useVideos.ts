@@ -15,6 +15,8 @@ export interface Video {
   folderName: string;
   id: string;
   number: string;
+  date: string;
+  lecturer: string;
   name: string;
   faculty: string;
   facultyNumber: string;
@@ -59,6 +61,8 @@ const useVideos = (DisplayQuery : DisplayQuery) => {
       totalItemsProcessed++;
 
       sampledVideos.push({
+        date: vid.date,
+        lecturer: vid.lecturer,
         thumbnailUrl: vid.thumbnailUrl,
         duration: vid.duration,
         courseNumber: vid.courseNumber,

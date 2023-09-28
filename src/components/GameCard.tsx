@@ -18,6 +18,11 @@ const GameCard = ({video} : Props)=>
             <Text noOfLines={2} dir='rtl' fontSize={'small'}>{video.title}</Text>
             <Text noOfLines={2} dir='rtl' fontSize={{sm: 'xx-small', md: "small"}}>{video.faculty}</Text>
             </HStack>
+            <HStack justifyContent='space-between'>
+            <Text noOfLines={1} dir='rtl' fontSize={'xx-small'}>{video.date}</Text>
+            <Text noOfLines={1} dir='rtl' fontSize={'xx-small'}>
+                {video.duration}</Text>
+            </HStack>
         </CardBody>
     </Card>
 )
