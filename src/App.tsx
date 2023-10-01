@@ -3,8 +3,7 @@
 import React, { useState } from 'react';
 import { Grid, GridItem,Button, HStack, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
-import GameGrid from './components/GameGrid';
-import RefreshButton from './components/RefreshButton';
+import ObjectGrid from './components/ObjectGrid';
 import FacultiesList from './components/FacultiesList';
 import { factory } from 'typescript';
 import FacultySelector from './components/FacultySelector';
@@ -53,7 +52,7 @@ function App() {
             <SortSelector selected_Faculty={displayQuery.faculty} onSelect=
               {(faculty) => { setDisplayQuery({ ...displayQuery, faculty: faculty }) }} />
             <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={onSelect} />
-          </HStack> <GameGrid onClick={onClick} DisplayQuery={displayQuery} />
+          </HStack> <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>

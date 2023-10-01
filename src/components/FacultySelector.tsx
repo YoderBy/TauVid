@@ -7,6 +7,8 @@ interface Props {
     selected_Faculty: Faculty | null;
     onSelect: (id: string) => void;
 }
+// this renders the dropdown and it is absolutly useless and redandent. but I didnt 
+// know whaat else to do with it
 
 const FacultySelector = ({ onSelect, selected_Faculty }: Props) => {
     const Faculties = Object.values(JsonFaculties); // generate faculty[] object
@@ -23,9 +25,9 @@ const FacultySelector = ({ onSelect, selected_Faculty }: Props) => {
                             //rendering an endless list
                         }
                         
-                        <Text textColor={"transparent"} font-size={'xx-small'}> {"___"}</Text>
+                        <Text textColor={"transparent"} fontSize={'xx-small'}> {"___"}</Text>
                   
-                        <Text font-size={'xx-small'}>מספר קורסים: {faculty.amount}</Text>
+                        <Text fontSize={'xx-small'}>מספר קורסים: {faculty.amount}</Text>
                 
                     </MenuItem>)}
             </MenuList>

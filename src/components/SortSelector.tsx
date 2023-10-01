@@ -7,7 +7,7 @@ interface Props {
     selected_Faculty : Faculty|null;
     onSelect: (Faculty: Faculty) => void;
 }
-
+// should at the end sort the element by parameters, but the wiring to the other component will be pain
 const SortSelector = ({ onSelect, selected_Faculty }: Props) => {
     const Faculties = useFaculties();
     return (

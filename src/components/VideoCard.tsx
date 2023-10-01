@@ -3,7 +3,7 @@ import { Video } from "../utils/types"
 interface Props{
     video: Video
 }
-const GameCard = ({video} : Props)=>
+const VideoCard = ({video} : Props)=>
 (
     //rendering the object as GameCard from its propertesd
     // this component styling can and should be imnporoved
@@ -25,4 +25,4 @@ const GameCard = ({video} : Props)=>
         </CardBody>
     </Card>
 )
-export default GameCard
+export default VideoCard

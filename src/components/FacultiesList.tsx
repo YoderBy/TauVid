@@ -7,6 +7,8 @@ interface Props {
     selectedFaculty: Faculty | null;
     onSelect: (id: string) => void;
 }
+// this shoud be sorted by video amnout, this renders the side faculties and allow to choose
+//right now the color isnt chaneging - will be fixed
 const FacultiesList = ({ onSelect, selectedFaculty }: Props) => {
     const genre = Object.values(JsonFaculties); // generate faculty[] object
     return (
