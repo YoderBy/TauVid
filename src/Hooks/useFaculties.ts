@@ -1,11 +1,7 @@
 
 import { useEffect, useState } from "react";
 import data from '../assets/Panopto_data_faculties.json';
-
-export interface Faculty {
-  id: string;
-  name: string;
-}
+import { Faculty } from "../utils/types";
 // retrive falculty[] object from json
 const useFaculties = () => {
 

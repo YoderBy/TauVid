@@ -1,0 +1,26 @@
+import { Text, Card, CardBody, AspectRatio,HStack, Image, Box, Link } from "@chakra-ui/react"
+import { Course } from "../utils/types"
+interface Props{
+    Course: Course
+    onClick: ()=>void;
+}
+const CourseCard = ({Course, onClick} : Props)=>
+(
+    //rendering the object as GameCard from its propertesd
+    // this component styling can and should be imnporoved
+    <Card onClick={onClick} width='100%' overflow={'hidden'}  padding = {{sm:'10px', lg:0}}borderRadius={'10px'} >
+        <CardBody>
+            <Text noOfLines={2} dir='rtl' fontSize={'md'}>{Course.name}</Text>
+            <HStack justifyContent='space-between'>
+            <Text noOfLines={2} dir='rtl' fontSize={'small'}>{Course.lecturer}</Text>
+            <Text noOfLines={2} dir='rtl' fontSize={{sm: 'xx-small', md: "small"}}>{Course.faculty}</Text>
+            </HStack>
+            <HStack justifyContent='space-between'>
+            <Text noOfLines={1} dir='rtl' fontSize={'xx-small'}> הוקלט בשנים {Course.date}</Text>
+            <Text noOfLines={1} dir='rtl' fontSize={'xx-small'}>
+                {Course.ids.length} מספר סרטונים</Text>
+            </HStack>
+        </CardBody>
+    </Card>
+)
+export default CourseCard

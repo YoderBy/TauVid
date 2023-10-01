@@ -1,11 +1,10 @@
 // GameGrid.tsx
 
-import useVideos, { Video } from '../Hooks/useVideos';
+import useVideos from '../Hooks/useVideos';
+import { DisplayQuery, Video } from '../utils/types';
 import { SimpleGrid } from '@chakra-ui/react';
 import GameCard from './GameCard';
-import { DisplayQuery } from '../App';
 import GameCardSkeleton from './GameCardSkeleton';
-import { Faculty } from '../Hooks/useFaculties';
 interface Props {
   DisplayQuery: DisplayQuery;
 }
@@ -13,7 +12,8 @@ interface Props {
 const GameGrid: React.FC<Props> = ({DisplayQuery }) => {
 
   const sampledVideo = useVideos(DisplayQuery) 
-  // get video[] object and render it
+  // get objects and renders them inside the grid
+  // the things to renders depends on the app componenet
 
 return (
     <>

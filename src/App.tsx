@@ -6,16 +6,10 @@ import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import RefreshButton from './components/RefreshButton';
 import FacultiesList from './components/FacultiesList';
-import { Faculty } from './Hooks/useFaculties';
 import { factory } from 'typescript';
 import FacultySelector from './components/FacultySelector';
 import SortSelector from './components/SortSelector';
-
-export interface DisplayQuery {
-  faculty: Faculty | null;
-  refreshing : boolean;
-
-}
+import { DisplayQuery, Faculty } from './utils/types';
 
 function App() {
   const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({faculty :null, refreshing: false})
