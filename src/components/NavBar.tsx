@@ -13,9 +13,7 @@ const NavBar: React.FC<Props> = ({ onRefresh }) => {
   return (
 
     <HStack justifyContent={'space-between'} padding={'10px'}>
-      <Button colorScheme="blue" onClick={onRefresh}>
-        חזור
-      </Button>
+
       <ColorModeSwitch />
       <Heading fontSize={{sm:'sm',md:'xl', lg:"xl"}}>יוסף בן יהודה</Heading>
 

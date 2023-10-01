@@ -26,10 +26,10 @@ const GameGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
       >
         {DisplayQuery.type == 'faculty' ?
           ObjectToRender.map(course =>
-            <CourseCard Course={course as Course} onClick={onClick} />
+            <CourseCard key = {course.id} Course={course as Course} onClick={onClick} />
           ) :
           ObjectToRender.map(video =>
-            <GameCard video={video as Video} />
+            <GameCard key = {video.id} video={video as Video} />
           )
         }
       </SimpleGrid>

@@ -24,7 +24,8 @@ export interface Faculty {
   }
 
 export interface JsonFaculty {
-    name: string[][];
+    id: string;
+    name: string;
     amount: number;
     ids: number[];
     lecturer: string[];

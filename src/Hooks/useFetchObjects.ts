@@ -8,16 +8,16 @@ import curated_videos from '../assets/videosdict.json';
 import {Faculty, DisplayQuery, Course, Faculty_data, Video, JsonFaculty } from "../utils/types";
 
 import { stringify } from "querystring";
-
+export const JsonFaculties : { [key: string]: JsonFaculty } = curated_faculties as { [key: string]: JsonFaculty };
+export const JsonCourses : { [key: string]: Course } = curated_courses as { [key: string]: Course };
+export const JsonVideos : { [key: string]: Video } = curated_videos as { [key: string]: Video };
+  
 
 
 //this hook fetch the required objects, based on the request
 const useFetchObjects = (DisplayQuery : DisplayQuery) => {
   
-  const JsonFaculties : { [key: string]: JsonFaculty } = curated_faculties as { [key: string]: JsonFaculty };
-  const JsonCourses : { [key: string]: Course } = curated_courses as { [key: string]: Course };
-  const JsonVideos : { [key: string]: Video } = curated_videos as { [key: string]: Video };
-  let FilteredObject : Course[] | Video[] = [];
+   let FilteredObject : Course[] | Video[] = [];
 
   if (DisplayQuery.type == "faculty"){ // returns all the courses in that faculty
     const DesiredIds = JsonFaculties[DisplayQuery.id]['ids'];

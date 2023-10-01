@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useState } from 'react';
-import { Grid, GridItem, HStack, Show } from '@chakra-ui/react';
+import { Grid, GridItem,Button, HStack, Show } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import GameGrid from './components/GameGrid';
 import RefreshButton from './components/RefreshButton';
@@ -13,18 +13,21 @@ import { Course, DisplayQuery, Faculty } from './utils/types';
 import { type } from 'os';
 
 function App() {
-  const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({faculty :null, refreshing: false, id: '0455', type: 'faculty'})
+  const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({ faculty: null, refreshing: false, id: '0111', type: 'faculty' });
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
-  const onClick = (course: Course)=>{
-    setDisplayQuery({...displayQuery, id: course.number, type: 'course', previous : {id:displayQuery.id, type:displayQuery.type}}) 
-  }
+  const onClick = (course: Course) => {
+    setDisplayQuery({ ...displayQuery, id: course.number, type: 'course', previous: { id: displayQuery.id, type: displayQuery.type } })
+  };
   const handleRefresh = () => {
-    if(displayQuery.previous){
-    setDisplayQuery({...displayQuery, id: displayQuery.previous.id, type: displayQuery.previous.type})}
+    if (displayQuery.previous) {
+      setDisplayQuery({ ...displayQuery, id: displayQuery.previous.id, type: displayQuery.previous.type })
+    }
     // pass it down all the way to GameGrid
   };
-
-
+  const onSelect = (string: string) => {
+    setDisplayQuery({ ...displayQuery, id: string, type: 'faculty', previous: { id: displayQuery.id, type: displayQuery.type } })
+    console.log(string);
+  };
   return (
     <>
       <Grid dir="rtl"
@@ -40,16 +43,17 @@ function App() {
         <Show above='sm'>
           <GridItem
             dir="rtl" w={'3%'} paddingX={'5px'} area="aside">
-            <FacultiesList selectedFaculty={displayQuery.faculty} onSelect={(faculty) => { 
-              setDisplayQuery({...displayQuery, faculty:faculty})}} /></GridItem>
+            <FacultiesList selectedFaculty={displayQuery.faculty} onSelect={onSelect} /></GridItem>
         </Show>
         <GridItem area="main">
-          <HStack spacing = {'5px'} padding-left={'2px'} marginBottom={'5px'}>
+          <HStack spacing={'5px'} padding-left={'2px'} marginBottom={'5px'}>
+          <Button colorScheme="blue" onClick={handleRefresh}>
+        חזור
+      </Button>
             <SortSelector selected_Faculty={displayQuery.faculty} onSelect=
-              {(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
-            <FacultySelector selected_Faculty={displayQuery.faculty} onSelect=
-              {(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
-          </HStack> <GameGrid onClick = {onClick} DisplayQuery={displayQuery} />
+              {(faculty) => { setDisplayQuery({ ...displayQuery, faculty: faculty }) }} />
+            <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={onSelect} />
+          </HStack> <GameGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>
