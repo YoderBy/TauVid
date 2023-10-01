@@ -17,14 +17,14 @@ const FacultiesList = ({ onSelect, selectedFaculty }: Props) => {
                 <ListItem
                     background={gen.id === selectedFaculty?.id ? '#f8f8ff' : ''}
                     border="1px" paddingY={'10px'} key={gen.id}>
-                    <Button
+                    <Button textAlign={'right'}
                         maxWidth="100%" whiteSpace="normal" variant='link'
                         fontWeight={gen.id === selectedFaculty?.id ? 'bold' : 'normal'}
                         color={gen.id === selectedFaculty?.id ? 'black' : ''}
                         onClick={() => onSelect(gen.id)} fontSize={{ base: "10px", md: "15px" }}>
                         {gen.name}
                     </Button>
-                    <Text font-size={'xx-small'}>מספר קורסים: {gen.amount}</Text>
+                    <Text fontSize={'xx-small'}>מספר קורסים: {gen.amount}</Text>
                 </ListItem>)}
         </List>
     )

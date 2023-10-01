@@ -17,9 +17,9 @@ const CourseCard = ({Course, onClick} : Props)=>
             <Text noOfLines={2} dir='rtl' fontSize={{sm: 'xx-small', md: "small"}}>{Course.faculty}</Text>
             </HStack>
             <HStack justifyContent='space-between'>
-            <Text noOfLines={1} dir='rtl' fontSize={'xx-small'}> הוקלט בשנים {Course.date}</Text>
-            <Text noOfLines={1} dir='rtl' fontSize={'xx-small'}>
-                {Course.ids.length} מספר סרטונים</Text>
+            <Text noOfLines={3} dir='rtl' fontSize={'xx-small'}> הוקלט בשנים {Course.date}</Text>
+            <Text noOfLines={3} dir='rtl' fontSize={'xx-small'}>
+            מספר סרטונים:   {Course.ids.length}</Text>
             </HStack>
             <Button onClick = {() => onClick(Course)} variant='solid' colorScheme='blue'>
                 עבור לקורס
