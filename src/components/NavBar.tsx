@@ -14,7 +14,7 @@ const NavBar: React.FC<Props> = ({ onRefresh }) => {
 
     <HStack justifyContent={'space-between'} padding={'10px'}>
       <Button colorScheme="blue" onClick={onRefresh}>
-        Refresh Videos
+        חזור
       </Button>
       <ColorModeSwitch />
       <Heading fontSize={{sm:'sm',md:'xl', lg:"xl"}}>יוסף בן יהודה</Heading>

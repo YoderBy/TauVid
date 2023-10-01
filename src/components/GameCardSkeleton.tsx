@@ -1,6 +1,5 @@
 import { Text, Card, CardBody, HStack, Image, Box, Link, Skeleton, SkeletonText } from "@chakra-ui/react"
-import { Video } from "../Hooks/useVideos"
-
+import { Video } from "../utils/types"
 const GameCardSkeleton = ()=>
 {    return(
     <Card  overflow={'hidden'} borderRadius={'10px'}>

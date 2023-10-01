@@ -1,6 +1,7 @@
 import { List, Text, ListItem, Button } from "@chakra-ui/react";
 import useFaculties from "../Hooks/useFaculties";
-import { Faculty } from "../Hooks/useFaculties";
+
+import { Faculty } from "../utils/types";
 interface Props {
     selectedFaculty: Faculty | null;
     onSelect: (faculty: Faculty) => void;

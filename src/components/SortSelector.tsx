@@ -1,6 +1,8 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
-import useFaculties, { Faculty } from "../Hooks/useFaculties";
+import useFaculties from "../Hooks/useFaculties";
 import { FaChevronDown as ChevronDownIcon } from 'react-icons/fa';
+import { Faculty } from "../utils/types";
+
 interface Props {
     selected_Faculty : Faculty|null;
     onSelect: (Faculty: Faculty) => void;

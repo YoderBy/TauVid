@@ -1,29 +1,44 @@
-// useVideos.tsx
+// useFetchObjects.tsx
 
 import { useEffect, useState } from "react";
 import data from '../assets/Panopto_data.json';
-
+import curated_faculties from '../assets/faculties.json';
 import curated_courses from '../assets/courses.json';
 import curated_videos from '../assets/videosdict.json';
-import {Faculty, DisplayQuery, Course, Faculty_data, Video } from "../utils/types";
+import {Faculty, DisplayQuery, Course, Faculty_data, Video, JsonFaculty } from "../utils/types";
 
 import { stringify } from "querystring";
 
 
 
-
-const useVideos = (DisplayQuery : DisplayQuery) => {
-  const used_indices: string[] = [];
-  const jsonData: { [key: string]: Course } = curated_courses;
+//this hook fetch the required objects, based on the request
+const useFetchObjects = (DisplayQuery : DisplayQuery) => {
   
-  const jsonVideo: { [key: string]: Video } = curated_videos as { [key: string]: Video };
+  const JsonFaculties : { [key: string]: JsonFaculty } = curated_faculties as { [key: string]: JsonFaculty };
+  const JsonCourses : { [key: string]: Course } = curated_courses as { [key: string]: Course };
+  const JsonVideos : { [key: string]: Video } = curated_videos as { [key: string]: Video };
+  let FilteredObject : Course[] | Video[] = [];
 
-  const Desired_ids = curated_courses['04552237']['ids'];
-  const filteredVideos: Video[] = Object.values(jsonVideo).filter(
-    (video: Video) => Desired_ids.includes(video.id)
-  );
-  return filteredVideos;
+  if (DisplayQuery.type == "faculty"){ // returns all the courses in that faculty
+    const DesiredIds = JsonFaculties[DisplayQuery.id]['ids'];
+    FilteredObject = Object.values(JsonCourses).filter(
+      (Course: Course) => DesiredIds.includes(Course.id)
+    )
+  }
+
+  if (DisplayQuery.type == "course"){ // returns all the videos in that course
+    const DesiredIds = JsonCourses[DisplayQuery.id]['ids'];
+    FilteredObject = Object.values(JsonVideos).filter(
+      (video: Video) => DesiredIds.includes(video.id)
+    );
+  }
   
+  return FilteredObject;
+  
+};
+
+export default useFetchObjects;
+
   // const check = (indices: string[], id: string, vid: Video) => {
   //   //checks if the ramdonly selected video already selected, and if its faculty matches the requasted faculty
   //   if (DisplayQuery.faculty) {
@@ -79,6 +94,3 @@ const useVideos = (DisplayQuery : DisplayQuery) => {
   // }
   
   // return sampledVideos;
-};
-
-export default useVideos;

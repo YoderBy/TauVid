@@ -1,6 +1,5 @@
 import { Text, Card, CardBody, AspectRatio,HStack, Image, Box, Link } from "@chakra-ui/react"
-import { Video } from "../Hooks/useVideos"
-
+import { Video } from "../utils/types"
 interface Props{
     video: Video
 }

@@ -1,5 +1,7 @@
+//types.ts
 export interface Course {
     id: number,
+    number: string,
     name: string,
     ids: number[],
     lecturer: string[],
@@ -8,14 +10,24 @@ export interface Course {
 }
 
 export interface DisplayQuery {
+    previous?: {id: string, type: "faculty" | "course" },
+    id: string; // id for the object
+    type: "faculty" | "course"; // type of the passed object
     faculty: Faculty | null;
     refreshing : boolean;
-  
 }
+
 
 export interface Faculty {
     id: string;
     name: string;
+  }
+
+export interface JsonFaculty {
+    name: string[][];
+    amount: number;
+    ids: number[];
+    lecturer: string[];
   }
 export interface Faculty_data{
     id:number,   

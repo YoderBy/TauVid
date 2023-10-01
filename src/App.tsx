@@ -9,18 +9,19 @@ import FacultiesList from './components/FacultiesList';
 import { factory } from 'typescript';
 import FacultySelector from './components/FacultySelector';
 import SortSelector from './components/SortSelector';
-import { DisplayQuery, Faculty } from './utils/types';
+import { Course, DisplayQuery, Faculty } from './utils/types';
+import { type } from 'os';
 
 function App() {
-  const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({faculty :null, refreshing: false})
+  const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({faculty :null, refreshing: false, id: '0455', type: 'faculty'})
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
-  
+  const onClick = (course: Course)=>{
+    setDisplayQuery({...displayQuery, id: course.number, type: 'course', previous : {id:displayQuery.id, type:displayQuery.type}}) 
+  }
   const handleRefresh = () => {
-    setDisplayQuery({...displayQuery, refreshing:true})
+    if(displayQuery.previous){
+    setDisplayQuery({...displayQuery, id: displayQuery.previous.id, type: displayQuery.previous.type})}
     // pass it down all the way to GameGrid
-    setTimeout(() => {
-      setDisplayQuery({...displayQuery, refreshing:false})
-    }, 100);
   };
 
 
@@ -48,7 +49,7 @@ function App() {
               {(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
             <FacultySelector selected_Faculty={displayQuery.faculty} onSelect=
               {(faculty) => { setDisplayQuery({...displayQuery, faculty:faculty})}} />
-          </HStack> <GameGrid DisplayQuery={displayQuery} />
+          </HStack> <GameGrid onClick = {onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>
