@@ -35,34 +35,27 @@ function App() {
     <>
       <Grid dir="rtl"
         templateAreas={{ // need to fix those templates Areas / switch the UI lib
-          base: `"nav nav" "aside main"`,
-          sm: `"nav nav" "aside main "`,
-          md: `"nav nav" "aside main"`,
+          base: `"header header" "nav main"`
         }}
       >
-        <GridItem area="nav">
+        <GridItem area="header">
           <NavBar onRefresh={onBack} />
+          <HStack maxWidth= {'500px'} spacing={'5px'} marginBottom={'5px'}>
+            <Button colorScheme="blue" onClick={onBack}>חזור</Button>
+            <Input onChange={(e) => {localSearchQuery = e.target.value}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
+            <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>מצא!</Button>  
+          </HStack>
         </GridItem>
-        <Show above='sm'>
-          <GridItem
-            dir="rtl" w={'3%'} paddingX={'5px'} area="aside">
+        <GridItem dir="rtl" paddingX={'5px'} area="nav">
             <FacultiesList selectedFaculty={displayQuery.faculty} onSelect={onSelect} /></GridItem>
-        </Show>
         <GridItem area="main">
-          <HStack spacing={'5px'} padding-left={'2px'} marginBottom={'5px'}>
-          <Button colorScheme="blue" onClick={onBack}>
-        חזור
-      </Button>
-      <Input onChange={(e) => {localSearchQuery = e.target.value}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
-      <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>חפש!</Button>
-          
-            </HStack>
-            <HStack>
+
+          <HStack>
             <SortSelector  onSelect=
               {SortSelect} DisplayQuery={displayQuery} />
             <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={onSelect} />
-            </HStack> 
-          <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
+          </HStack> 
+            <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>
