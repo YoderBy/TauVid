@@ -1,7 +1,7 @@
 import { List, Text, ListItem, Button } from "@chakra-ui/react";
 import useFaculties from "../Hooks/useFaculties";
 
-import { Faculty } from "../utils/types";
+import { Faculty, JsonFaculty } from "../utils/types";
 import { JsonFaculties } from "../Hooks/useFetchObjects";
 interface Props {
     selectedFaculty: Faculty | null;
@@ -10,7 +10,8 @@ interface Props {
 // this shoud be sorted by video amnout, this renders the side faculties and allow to choose
 //right now the color isnt chaneging - will be fixed
 const FacultiesList = ({ onSelect, selectedFaculty }: Props) => {
-    const genre = Object.values(JsonFaculties); // generate faculty[] object
+    const genre = Object.values(JsonFaculties).sort((faculty1: JsonFaculty, faculty2: JsonFaculty)=> faculty2.ids.length - faculty1.ids.length); // generate faculty[] object and sort it
+    
     return (
         <List overflowWrap={'break-word'} w={{ base: "100px", md: "200px" }}>
             {genre.map(gen =>
