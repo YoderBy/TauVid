@@ -7,6 +7,7 @@ import ColorModeSwitch from "./ColorModeSwitch";
 
 interface Props {
   onRefresh: () => void;
+  
 }
 
 const NavBar: React.FC<Props> = ({ onRefresh }) => {

@@ -1,26 +1,28 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { Button, Menu, MenuButton, MenuItem, MenuList, Show } from "@chakra-ui/react";
 import useFaculties from "../Hooks/useFaculties";
 import { FaChevronDown as ChevronDownIcon } from 'react-icons/fa';
-import { Faculty } from "../utils/types";
+import { DisplayQuery, Faculty } from "../utils/types";
 
 interface Props {
-    selected_Faculty : Faculty|null;
-    onSelect: (Faculty: Faculty) => void;
+    onSelect: (option: string) => void;
+    DisplayQuery : DisplayQuery;
 }
 // should at the end sort the element by parameters, but the wiring to the other component will be pain
-const SortSelector = ({ onSelect, selected_Faculty }: Props) => {
-    const Faculties = useFaculties();
+const SortSelector = ({ onSelect, DisplayQuery }: Props) => {
+    console.log(DisplayQuery.type);
     return (
         <Menu>
             <MenuButton  rightIcon={<ChevronDownIcon />} as={Button}>
-            order by Relevane
+            מיין על פי תאריך
             </MenuButton> 
             <MenuList>
-                <MenuItem>Relevance</MenuItem>
-                <MenuItem>Date</MenuItem>
-                <MenuItem>Name</MenuItem>
-                <MenuItem>Length</MenuItem>
-                <MenuItem>Lecuture</MenuItem>
+                <MenuItem onClick={() => onSelect('date')}>תאריך</MenuItem>      
+                <MenuItem onClick={() => 
+                    onSelect('amount')} display={DisplayQuery.type == 'faculty'? "" : 'none'}>כמות סרטונים</MenuItem>
+                <MenuItem onClick={() => 
+                    onSelect('duration')} display={DisplayQuery.type == 'course'? "" : 'none'}>אורך</MenuItem>
+                <MenuItem onClick={() => 
+                    onSelect('lecturer')}>מרצה</MenuItem>
                 
             </MenuList>
         </Menu>

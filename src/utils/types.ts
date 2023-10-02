@@ -6,7 +6,7 @@ export interface DisplayQuery {
     id: string; // id for the object
     type: "faculty" | "course"; // type of the passed object
     faculty: Faculty | null;
-    refreshing : boolean;
+    searchQuery : string;
 }
 
 
@@ -34,7 +34,7 @@ export interface Video {
     thumbnailUrl: string;
     duration: string;
     courseNumber?: string;
-    fullDescription?: string;
+    fullDescription: string;
     title: string;
     detailUrl: string;
     detailTitle:Record<string, unknown>; 

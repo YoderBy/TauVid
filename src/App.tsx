@@ -1,7 +1,7 @@
 // App.tsx
 
 import React, { useState } from 'react';
-import { Grid, GridItem,Button, HStack, Show } from '@chakra-ui/react';
+import { Grid, GridItem,Button, HStack, Show, Input } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import ObjectGrid from './components/ObjectGrid';
 import FacultiesList from './components/FacultiesList';
@@ -12,19 +12,23 @@ import { Course, DisplayQuery, Faculty } from './utils/types';
 import { type } from 'os';
 
 function App() {
-  const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({ faculty: null, refreshing: false, id: '0111', type: 'faculty' });
+  const [localSearchQuery, setlocalSearchQuery] = useState("");
+  const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({ faculty: null, searchQuery: "", id: '0111', type: 'faculty', sortBy: 'date' });
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
   const onClick = (course: Course) => {
     setDisplayQuery({ ...displayQuery, id: course.number, type: 'course', previous: { id: displayQuery.id, type: displayQuery.type } })
   };
-  const handleRefresh = () => {
+  const onBack = () => {
     if (displayQuery.previous) {
       setDisplayQuery({ ...displayQuery, id: displayQuery.previous.id, type: displayQuery.previous.type })
     }
     // pass it down all the way to GameGrid
   };
+  const SortSelect = (string:string) =>{
+    setDisplayQuery({...displayQuery, sortBy:string});
+  }
   const onSelect = (string: string) => {
-    setDisplayQuery({ ...displayQuery, id: string, type: 'faculty', previous: { id: displayQuery.id, type: displayQuery.type } })
+    setDisplayQuery({ ...displayQuery, id: string, type: 'faculty', previous: { id: displayQuery.id, type: displayQuery.type }, searchQuery: "" })
     console.log(string);
   };
   return (
@@ -37,7 +41,7 @@ function App() {
         }}
       >
         <GridItem area="nav">
-          <NavBar onRefresh={handleRefresh} />
+          <NavBar onRefresh={onBack} />
         </GridItem>
         <Show above='sm'>
           <GridItem
@@ -46,12 +50,14 @@ function App() {
         </Show>
         <GridItem area="main">
           <HStack spacing={'5px'} padding-left={'2px'} marginBottom={'5px'}>
-          <Button colorScheme="blue" onClick={handleRefresh}>
+          <Button colorScheme="blue" onClick={onBack}>
         חזור
       </Button>
-            <SortSelector selected_Faculty={displayQuery.faculty} onSelect=
-              {(faculty) => { setDisplayQuery({ ...displayQuery, faculty: faculty }) }} />
+            <SortSelector  onSelect=
+              {SortSelect} DisplayQuery={displayQuery} />
             <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={onSelect} />
+            <Input onChange={(e) => {setlocalSearchQuery( e.target.value)}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
+            <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>חפש!</Button>
           </HStack> <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
