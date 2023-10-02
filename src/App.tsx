@@ -12,7 +12,7 @@ import { Course, DisplayQuery, Faculty } from './utils/types';
 import { type } from 'os';
 
 function App() {
-  const [localSearchQuery, setlocalSearchQuery] = useState("");
+  let localSearchQuery = "";
   const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({ faculty: null, searchQuery: "", id: '0111', type: 'faculty', sortBy: 'date' });
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
   const onClick = (course: Course) => {
@@ -53,12 +53,16 @@ function App() {
           <Button colorScheme="blue" onClick={onBack}>
         חזור
       </Button>
+      <Input onChange={(e) => {localSearchQuery = e.target.value}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
+      <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>חפש!</Button>
+          
+            </HStack>
+            <HStack>
             <SortSelector  onSelect=
               {SortSelect} DisplayQuery={displayQuery} />
             <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={onSelect} />
-            <Input onChange={(e) => {setlocalSearchQuery( e.target.value)}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
-            <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>חפש!</Button>
-          </HStack> <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
+            </HStack> 
+          <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>

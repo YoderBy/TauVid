@@ -9,7 +9,6 @@ interface Props {
 }
 // should at the end sort the element by parameters, but the wiring to the other component will be pain
 const SortSelector = ({ onSelect, DisplayQuery }: Props) => {
-    console.log(DisplayQuery.type);
     return (
         <Menu>
             <MenuButton  rightIcon={<ChevronDownIcon />} as={Button}>
