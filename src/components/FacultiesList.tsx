@@ -24,7 +24,7 @@ const FacultiesList = ({ onSelect, selectedFaculty }: Props) => {
                         onClick={() => onSelect(gen.id)} fontSize={{ base: "10px", md: "15px" }}>
                         {gen.name}
                     </Button>
-                    <Text fontSize={'xx-small'}>מספר קורסים: {gen.amount}</Text>
+                    <Text fontSize={'xx-small'}>מספר קורסים: {gen.ids.length}</Text>
                 </ListItem>)}
         </List>
     )
