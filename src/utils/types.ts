@@ -1,15 +1,7 @@
 //types.ts
-export interface Course {
-    id: number,
-    number: string,
-    name: string,
-    ids: number[],
-    lecturer: string[],
-    date: string[],
-    faculty: string[],
-}
 
 export interface DisplayQuery {
+    sortBy?: string;
     previous?: {id: string, type: "faculty" | "course" },
     id: string; // id for the object
     type: "faculty" | "course"; // type of the passed object
@@ -55,3 +47,12 @@ export interface Video {
     faculty?: string;
     facultyNumber?: string;
   }
+  export interface Course {
+    id: number,
+    number: string,
+    name: string,
+    ids: number[],
+    lecturer: string[],
+    date: string[],
+    faculty: string[],
+}

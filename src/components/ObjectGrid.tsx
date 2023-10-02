@@ -10,7 +10,16 @@ interface Props {
 }
 
 const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
-  const ObjectToRender = useFetchObjects(DisplayQuery)
+  let ObjectToRender = useFetchObjects(DisplayQuery)
+
+
+
+  function isVideo (Object : Course[] | Video[]) : Object is Video[]{
+    return Object.length > 0 && 'thumbnailUrl' in Object[0];
+  }
+  if(!isVideo(ObjectToRender)){
+  ObjectToRender = ObjectToRender.sort((Object1 : Course, Object2 : Course) => Object2.ids.length - Object1.ids.length)
+  }
   // get objects and renders them inside the grid
   // the things to renders depends on the app componenet
 
