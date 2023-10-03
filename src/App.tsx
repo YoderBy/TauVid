@@ -42,7 +42,7 @@ function App() {
           <NavBar onRefresh={onBack} />
           <HStack maxWidth= {'500px'} spacing={'5px'} marginBottom={'5px'}>
             <Button colorScheme="blue" onClick={onBack}>חזור</Button>
-            <Input onChange={(e) => {localSearchQuery = e.target.value}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
+            <Input  onChange={(e) => {localSearchQuery = e.target.value}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
             <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>מצא!</Button>  
           </HStack>
         </GridItem>

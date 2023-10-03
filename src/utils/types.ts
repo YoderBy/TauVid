@@ -42,7 +42,7 @@ export interface Video {
     id: number;
     number: string;
     date?: string;
-    lecturer?: string;
+    lecturer: string;
     name: string;
     faculty?: string;
     facultyNumber?: string;

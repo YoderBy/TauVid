@@ -13,7 +13,7 @@ const FacultiesList = ({ onSelect, selectedFaculty }: Props) => {
     const genre = Object.values(JsonFaculties).sort((faculty1: JsonFaculty, faculty2: JsonFaculty)=> faculty2.ids.length - faculty1.ids.length); // generate faculty[] object and sort it
     
     return (
-        <List overflowWrap={'break-word'} w={{ base: "100px", md: "200px" }}>
+        <List overflowWrap={'break-word'} maxWidth= {"200px" }>
             {genre.map(gen =>
                 <ListItem
                     background={gen.id === selectedFaculty?.id ? '#f8f8ff' : ''}

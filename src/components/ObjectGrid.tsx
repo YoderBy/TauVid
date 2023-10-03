@@ -1,7 +1,7 @@
 
 import useFetchObjects, { JsonVideos } from '../Hooks/useFetchObjects';
 import { Course, DisplayQuery, Video } from '../utils/types';
-import { SimpleGrid } from '@chakra-ui/react';
+import { SimpleGrid, Text } from '@chakra-ui/react';
 import VideoCard from './VideoCard';
 import CourseCard from './CourseCard';
 import { isVideo, timeToSeconds } from '../utils/helpersFunctions';
@@ -56,12 +56,15 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
 
   return (
     <>
+    {
+         DisplayQuery.searchQuery === ""? null : <Text> נמצאו {ObjectToRender.length} סרטונים</Text>}
       <SimpleGrid
         dir="rtl"
         padding={'5px'}
         columns={{ sm: 1, md: 2, lg: 4, xl: 6 }}
         spacing={7}
       >
+        
         {
          DisplayQuery.searchQuery === ""? 
           DisplayQuery.type == 'faculty' ? // there is probebly a better way to render it
