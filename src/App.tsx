@@ -10,6 +10,7 @@ import FacultySelector from './components/FacultySelector';
 import SortSelector from './components/SortSelector';
 import { Course, DisplayQuery, Faculty } from './utils/types';
 import { type } from 'os';
+import SidebarWithHeader from './components/SideBar';
 
 function App() {
   let localSearchQuery = "";
@@ -28,14 +29,15 @@ function App() {
     setDisplayQuery({...displayQuery, sortBy:string});
   }
   const onSelect = (string: string) => {
+    console.log("hello");
     setDisplayQuery({ ...displayQuery, id: string, type: 'faculty', previous: { id: displayQuery.id, type: displayQuery.type }, searchQuery: "" })
-    console.log(string);
+    
   };
   return (
     <>
       <Grid dir="rtl"
         templateAreas={{ // need to fix those templates Areas / switch the UI lib
-          base: `"header header" "nav main"`
+          base: `"header header" "aside main"`
         }}
       >
         <GridItem area="header">
@@ -46,8 +48,8 @@ function App() {
             <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>מצא!</Button>  
           </HStack>
         </GridItem>
-        <GridItem dir="rtl" paddingX={'5px'} area="nav">
-            <FacultiesList selectedFaculty={displayQuery.faculty} onSelect={onSelect} /></GridItem>
+        <GridItem dir="rtl" area="aside">
+            <SidebarWithHeader onSelectItem = {onSelect}/></GridItem>
         <GridItem area="main">
 
           <HStack>
