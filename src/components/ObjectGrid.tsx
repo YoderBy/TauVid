@@ -62,7 +62,7 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
         dir="rtl"
         padding={'5px'}
         columns={{ sm: 1, md: 2, lg: 4, xl: 6 }}
-        spacing={7}
+        spacing={4}
       >
         
         {

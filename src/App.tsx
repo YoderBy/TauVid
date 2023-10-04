@@ -26,6 +26,7 @@ function App() {
     // pass it down all the way to GameGrid
   };
   const SortSelect = (string:string) =>{
+    console.log(string);
     setDisplayQuery({...displayQuery, sortBy:string});
   }
   const onSelect = (string: string) => {
@@ -35,14 +36,14 @@ function App() {
   };
   return (
     <>
-      <Grid dir="rtl"
+      <Grid w = '100%' dir="rtl"
         templateAreas={{ // need to fix those templates Areas / switch the UI lib
           base: `"header header" "aside main"`
         }}
       >
-        <GridItem area="header">
-          <NavBar onRefresh={onBack} />
-          <HStack maxWidth= {'500px'} spacing={'5px'} marginBottom={'5px'}>
+        <GridItem w={'100%'} alignItems={'center'} area="header">
+          <NavBar  onRefresh={onBack} />
+          <HStack maxWidth= {{base:'90%', md: '500px'}} spacing={'5px'} marginBottom={'5px'}>
             <Button colorScheme="blue" onClick={onBack}>חזור</Button>
             <Input  onChange={(e) => {localSearchQuery = e.target.value}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
             <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>מצא!</Button>  
@@ -51,12 +52,10 @@ function App() {
         <GridItem dir="rtl" area="aside">
             <SidebarWithHeader onSelectItem = {onSelect}/></GridItem>
         <GridItem area="main">
-
           <HStack>
             <SortSelector  onSelect=
               {SortSelect} DisplayQuery={displayQuery} />
-            <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={onSelect} />
-          </HStack> 
+            </HStack> 
             <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
