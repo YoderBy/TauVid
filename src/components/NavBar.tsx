@@ -13,7 +13,7 @@ interface Props {
 const NavBar: React.FC<Props> = ({ onRefresh }) => {
   return (
 
-    <HStack justifyContent={'space-between'} padding={'10px'}>
+    <HStack maxWidth= {{base:'90%', md: ''}} justifyContent={'space-between'} padding={'10px'}>
 
       <ColorModeSwitch />
       <Heading fontSize={{sm:'sm',md:'xl', lg:"xl"}}>יוסף בן יהודה</Heading>

@@ -36,6 +36,7 @@ import { JsonFaculties } from '../Hooks/useFetchObjects'
 import { Console } from 'console'
 
 export interface LinkItemProps {
+    amount: number;
     name: string
     icon: IconType
     id: string
@@ -66,7 +67,7 @@ interface SideBarHeaderProps {
 
 const LinkItems: Array<LinkItemProps> =
     Object.values(JsonFaculties).map(faculty =>
-        ({ 'name': faculty.name, 'icon': FiStar, 'id': faculty.id })
+        ({ 'name': faculty.name, 'icon': FiStar, 'id': faculty.id, 'amount': faculty.amount })
     );
 const SidebarContent = ({ onSelectItem, onClose, ...rest }: realSideBarProps) => {
     return (
@@ -76,13 +77,21 @@ const SidebarContent = ({ onSelectItem, onClose, ...rest }: realSideBarProps) =>
             borderRight="1px"
             borderRightColor={useColorModeValue('gray.200', 'gray.700')}
             w={{ base: 'full', md: "100%" }}
+            //w = '100%'
             {...rest}>
-            <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+            {<CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />}
 
             {LinkItems.map((link) => (
-                <NavItem id = {link.id} onSelectItem={() => onSelectItem(link.id)
+                <NavItem id={link.id} onSelectItem={() => onSelectItem(link.id)
                 } key={link.name} icon={link.icon}>
-                    {link.name}
+                    <VStack alignItems={'right'}>
+                        <Text>
+                            {link.name}
+                        </Text>
+                        <Text fontSize={'x-small'}>
+                            מספר סרטונים {link.amount}
+                        </Text>
+                    </VStack>
                 </NavItem>
             ))}
         </Box>
@@ -93,11 +102,11 @@ const NavItem = ({ onSelectItem, id, icon, children, ...rest }: realNavItemProps
 
     return (
         <Box
-        onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-            
-            console.log(id);
-            onSelectItem(id);
-          }}
+            onClick={(e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+
+                console.log(id);
+                onSelectItem(id);
+            }}
             as="a"
             href="#"
             style={{ textDecoration: 'none' }}
@@ -120,7 +129,6 @@ const NavItem = ({ onSelectItem, id, icon, children, ...rest }: realNavItemProps
         </Box>
     )
 }
-
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     return (
         <Flex
@@ -139,37 +147,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                 aria-label="open menu"
                 icon={<FiMenu />}
             />
-
-            <Text
-                display={{ base: 'flex', md: 'none' }}
-                fontSize="2xl"
-                fontFamily="monospace"
-                fontWeight="bold">
-            </Text>
-
-            <HStack spacing={{ base: '0', md: '6' }}>
-                <Flex alignItems={'center'}>
-                    <Menu>
-                        <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
-                            <HStack>
-                                <VStack
-                                    display={{ base: 'none', md: 'flex' }}
-                                    alignItems="flex-start"
-                                    spacing="1px"
-                                    ml="2">
-                                    <Text fontSize="sm">Justina Clark</Text>
-                                    <Text fontSize="xs" color="gray.600">
-                                        Admin
-                                    </Text>
-                                </VStack>
-                                <Box display={{ base: 'none', md: 'flex' }}>
-                                    <FiChevronDown />
-                                </Box>
-                            </HStack>
-                        </MenuButton>
-                    </Menu>
-                </Flex>
-            </HStack>
         </Flex>
     )
 }
@@ -178,23 +155,29 @@ const SidebarWithHeader = ({ onSelectItem }: SideBarHeaderProps) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <Box maxWidth={'200px'} minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-            <SidebarContent onSelectItem={onSelectItem} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+        <Box maxWidth={{ base: '150px', md: "200px" }} minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+            <SidebarContent onSelectItem={onSelectItem} onClose={() => onClose}
+                display={{ base: 'none'/*none*/, md: 'block' }} />
+
             <Drawer
                 isOpen={isOpen}
                 placement="right"
+
                 onClose={onClose}
                 returnFocusOnClose={false}
                 onOverlayClick={onClose}
-                size="full">
+                preserveScrollBarGap={true}
+            >
+
                 <DrawerContent
+                    overflow={'scroll'}
                     dir='rtl'>
                     <SidebarContent onSelectItem={onSelectItem} onClose={onClose} />
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
-            <MobileNav onOpen={onOpen} />
-            <Box ml={{ base: 0, md: 60 }} p="4">
+            {<MobileNav onOpen={onOpen} />}
+            <Box ml={{ base: 0 /*0*/, md: 60 }} p="4">
                 {/* Content */}
             </Box>
         </Box>
