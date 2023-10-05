@@ -9,7 +9,7 @@ const CourseCard = ({Course, onClick} : Props)=>
 (
     //rendering the object as GameCard from its propertesd
     // this component styling can and should be imnporoved because it has no images and no cats
-    <Card width='100%' overflow={''}  padding = {{sm:'10px', lg:0}}borderRadius={'10px'} >
+    <Card maxWidth = {{base:'80%', md: '100%'}} width='100%' overflow={''}  padding = {{sm:'10px', lg:0}}borderRadius={'10px'} >
         <CardBody>
             <Text noOfLines={2} dir='rtl' fontSize={'md'}>{Course.name}</Text>
             <HStack justifyContent='space-between'>
