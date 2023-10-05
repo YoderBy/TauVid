@@ -29,7 +29,6 @@ function App() {
     setDisplayQuery({...displayQuery, sortBy:string});
   }
   const onSelect = (string: string) => {
-    console.log("hello");
     setDisplayQuery({ ...displayQuery, id: string, type: 'faculty', previous: { id: displayQuery.id, type: displayQuery.type }, searchQuery: "" })
     
   };
@@ -55,7 +54,6 @@ function App() {
           <HStack>
             <SortSelector  onSelect=
               {SortSelect} DisplayQuery={displayQuery} />
-            <FacultySelector selected_Faculty={displayQuery.faculty} onSelect={onSelect} />
           </HStack> 
             <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
