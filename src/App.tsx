@@ -54,11 +54,7 @@ function App() {
           <HStack>
             <SortSelector  onSelect=
               {SortSelect} DisplayQuery={displayQuery} />
-<<<<<<< HEAD
           </HStack> 
-=======
-            </HStack> 
->>>>>>> 520fba1fa3a63b5ef5d8d7d9ecc075a9e0ab517f
             <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>

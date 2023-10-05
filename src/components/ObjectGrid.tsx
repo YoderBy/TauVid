@@ -58,13 +58,14 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
     <>
     {
          DisplayQuery.searchQuery === ""? null : <Text> נמצאו {ObjectToRender.length} סרטונים</Text>}
+      <Text dir='rtl' fontSize={'xx-small'}>* מרצה שלא טרח להעלות תמונה של הוידאו, קיבל חתול.</Text>
+        
       <SimpleGrid
         dir="rtl"
         padding={'5px'}
         columns={{ sm: 1, md: 2, lg: 4, xl: 6 }}
         spacing={4}
       >
-        
         {
          DisplayQuery.searchQuery === ""? 
           DisplayQuery.type == 'faculty' ? // there is probebly a better way to render it
