@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/game-hub/static/css/main.31d6cfe0.css",
-    "main.js": "/game-hub/static/js/main.4982525a.js",
+    "main.js": "/game-hub/static/js/main.f1f890bb.js",
     "static/js/787.f7d43f86.chunk.js": "/game-hub/static/js/787.f7d43f86.chunk.js",
     "index.html": "/game-hub/index.html",
-    "main.4982525a.js.map": "/game-hub/static/js/main.4982525a.js.map",
+    "main.f1f890bb.js.map": "/game-hub/static/js/main.f1f890bb.js.map",
     "787.f7d43f86.chunk.js.map": "/game-hub/static/js/787.f7d43f86.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.4982525a.js"
+    "static/js/main.f1f890bb.js"
   ]
 }
