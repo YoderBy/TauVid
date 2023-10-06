@@ -1,10 +1,11 @@
 
 import useFetchObjects, { JsonVideos } from '../Hooks/useFetchObjects';
 import { Course, DisplayQuery, Video } from '../utils/types';
-import { SimpleGrid, Text } from '@chakra-ui/react';
+import { SimpleGrid, Text, useDisclosure } from '@chakra-ui/react';
 import VideoCard from './VideoCard';
 import CourseCard from './CourseCard';
 import { isVideo, timeToSeconds } from '../utils/helpersFunctions';
+import { MobileNav } from './SideBar';
 interface Props {
   DisplayQuery: DisplayQuery;
   onClick: (course: Course) => void;
@@ -50,22 +51,24 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
     });
   }
   }
+  
 
   // get objects and renders them inside the grid
   // the things to renders depends on the app componenet
+ 
 
   return (
     <>
-    {
-         DisplayQuery.searchQuery === ""? null : <Text> נמצאו {ObjectToRender.length} סרטונים</Text>}
-      <Text dir='rtl' fontSize={'xx-small'}>* מרצה שלא טרח להעלות תמונה של הוידאו, קיבל חתול.</Text>
+    {DisplayQuery.searchQuery === ""? 
+    null : <Text w = '100%'> נמצאו {ObjectToRender.length} קורסים</Text>}
         
-      <SimpleGrid
+    <SimpleGrid
         dir="rtl"
         padding={'5px'}
-        columns={{ sm: 1, md: 2, lg: 4, xl: 6 }}
-        spacing={4}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        spacing={5}
       >
+        
         {
          DisplayQuery.searchQuery === ""? 
           DisplayQuery.type == 'faculty' ? // there is probebly a better way to render it
@@ -76,8 +79,8 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
               <VideoCard key = {video.id} video={video as Video} />
             )
           :
-          ObjectToRender.map(video =>
-            <VideoCard key = {video.id} video={video as Video} />
+          ObjectToRender.map(course =>
+            <CourseCard key = {course.id} Course={course as Course} onClick={onClick} />
           )
       }
       

@@ -20,6 +20,7 @@ import {
     MenuDivider,
     MenuItem,
     MenuList,
+    Button,
 } from '@chakra-ui/react'
 import {
     FiHome,
@@ -34,6 +35,7 @@ import {
 import { IconType } from 'react-icons'
 import { JsonFaculties } from '../Hooks/useFetchObjects'
 import { Console } from 'console'
+import { Course } from '../utils/types'
 
 export interface LinkItemProps {
     amount: number;
@@ -63,12 +65,16 @@ interface realSideBarProps extends SidebarProps {
 }
 interface SideBarHeaderProps {
     onSelectItem: (id: string) => void;
+    isOpen: boolean;
+    onOpen: ()=> void;
+    onClose: ()=> void;
+    
 }
 
 const LinkItems: Array<LinkItemProps> =
     Object.values(JsonFaculties).map(faculty =>
-        ({ 'name': faculty.name, 'icon': FiStar, 'id': faculty.id, 'amount': faculty.amount })
-    );
+        ({ 'name': faculty.name, 'icon': FiStar, 'id': faculty.id, 'amount': faculty.amount })).sort((Object1 : any, Object2 : any) => Object2.amount - Object1.amount);
+
 const SidebarContent = ({ onSelectItem, onClose, ...rest }: realSideBarProps) => {
     return (
         <Box
@@ -82,14 +88,17 @@ const SidebarContent = ({ onSelectItem, onClose, ...rest }: realSideBarProps) =>
             {<CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />}
 
             {LinkItems.map((link) => (
-                <NavItem id={link.id} onSelectItem={() => onSelectItem(link.id)
+                <NavItem id={link.id} onSelectItem={() => {
+                    onClose()
+                    onSelectItem(link.id)
+                }
                 } key={link.name} icon={link.icon}>
                     <VStack alignItems={'right'}>
                         <Text>
                             {link.name}
                         </Text>
                         <Text fontSize={'x-small'}>
-                            מספר סרטונים {link.amount}
+                            מספר קורסים זמינים {link.amount}
                         </Text>
                     </VStack>
                 </NavItem>
@@ -129,7 +138,7 @@ const NavItem = ({ onSelectItem, id, icon, children, ...rest }: realNavItemProps
         </Box>
     )
 }
-const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+export const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
     return (
         <Flex
             ml={{ base: 0, md: 60 }}
@@ -140,29 +149,25 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
             borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
             justifyContent={{ base: 'space-between', md: 'flex-end' }}
             {...rest}>
-            <IconButton
+            <Button
                 display={{ base: 'flex', md: 'none' }}
                 onClick={onOpen}
-                variant="outline"
-                aria-label="open menu"
-                icon={<FiMenu />}
-            />
+                
+            >בחרו פקולטה</Button>
         </Flex>
     )
 }
 
-const SidebarWithHeader = ({ onSelectItem }: SideBarHeaderProps) => {
-    const { isOpen, onOpen, onClose } = useDisclosure()
-
+const SidebarWithHeader = ({isOpen,onClose,onOpen, onSelectItem }: SideBarHeaderProps) => {
+    
     return (
-        <Box maxWidth={{ base: '150px', md: "200px" }} minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+        <Box maxWidth={ {md: "200px" }} minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
             <SidebarContent onSelectItem={onSelectItem} onClose={() => onClose}
                 display={{ base: 'none'/*none*/, md: 'block' }} />
 
             <Drawer
                 isOpen={isOpen}
                 placement="right"
-
                 onClose={onClose}
                 returnFocusOnClose={false}
                 onOverlayClick={onClose}
@@ -176,7 +181,6 @@ const SidebarWithHeader = ({ onSelectItem }: SideBarHeaderProps) => {
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
-            {<MobileNav onOpen={onOpen} />}
             <Box ml={{ base: 0 /*0*/, md: 60 }} p="4">
                 {/* Content */}
             </Box>

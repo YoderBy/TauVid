@@ -34,9 +34,9 @@ const useFetchObjects = (DisplayQuery: DisplayQuery) => {
     }
   }
   else {
-    FilteredObject = Object.values(JsonVideos).filter(
-      
-      (video: Video) => (video.fullDescription+video.name + video.lecturer).includes(DisplayQuery.searchQuery)
+    FilteredObject = Object.values(JsonCourses).filter(
+      (course: Course) =>
+       (course.faculty + course.number + course.date+course.name + course.lecturer).includes(DisplayQuery.searchQuery)
     );
   }
   return FilteredObject;

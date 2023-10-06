@@ -24,17 +24,18 @@ export default function blogPostWithImage({Course, onClick} : Props) {
         borderColor={'white'}
         borderStyle={'solid'}
         borderWidth={'1px'}
-        h={'345px'}
-        
-        w={{base: '300px', md: '445px'}}
+        h={'400px'}
+        w={{base: '350px', md: '445px'}}
         // eslint-disable-next-line react-hooks/rules-of-hooks
         bg={useColorModeValue('white', 'gray.900')}
         boxShadow={'2xl'}
         rounded={'md'}
         p={6}
-        overflow={'hidden'}>
+        overflow={'hidden'}
+        position="relative"
+        >
 
-        <Stack>
+        <Stack alignContent={'space-between'}>
         <Heading
             // eslint-disable-next-line react-hooks/rules-of-hooks
             color={useColorModeValue('gray.700', 'white')}
@@ -60,14 +61,21 @@ export default function blogPostWithImage({Course, onClick} : Props) {
         {Course.date.map(date=>  
         <Text color={'gray.500'}>
             {date + ', '}
-          </Text>)}
+        </Text>)}
          </HStack>
-          <Text noOfLines={3} dir='rtl' fontSize={'xx-small'}>
+          <Text noOfLines={3} dir='rtl' fontSize={'small'}>
             מספר סרטונים:   {Course.ids.length}</Text>
-
+          <Text dir='rtl' fontSize={'small'}> {Course.faculty}</Text>
         </Stack>
-        <Button onClick = {() => onClick(Course)} variant='solid' colorScheme='blue'>
-                עבור לקורס
+        <Button
+                onClick={() => onClick(Course)}
+                variant='solid'
+                colorScheme='blue'
+                position="absolute"  // This removes the button from the normal flow of the document
+                bottom={4}  // Adjust distance from the bottom as needed
+                right={4}  // Adjust distance from the right as needed
+            >
+              עבור לקורס
             </Button>
       </Box>
     </Center>

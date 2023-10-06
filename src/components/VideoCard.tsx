@@ -43,6 +43,10 @@ export default function blogPostWithImage({video} : Props) {
         
     <Link href={video.detailUrl} isExternal>
         <Stack>
+        <Text  display = {video.thumbnailUrl == 'file:///C:/Panopto/Images/no_thumbnail.svg'?
+            '' : 'none'}
+        dir='rtl' fontSize={'xx-small'}>* מרצה שלא טרח להעלות תמונה של הוידאו, קיבל חתול.</Text>
+      
           <Text
             color={'green.500'}
             textTransform={'uppercase'}
@@ -67,6 +71,7 @@ export default function blogPostWithImage({video} : Props) {
         </HStack>
             <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
                 <Stack direction={'column'} spacing={0} fontSize={'sm'}>
+                
                 <Text dir = 'rtl' color={'gray.500'}>
                     תאריך: 
                     {" " + video.date}
@@ -75,6 +80,8 @@ export default function blogPostWithImage({video} : Props) {
                     אורך: 
                     {" " + video.duration}
                 </Text>
+                
+          <Text dir='rtl' fontSize={'small'}> {video.faculty}</Text>
                 </Stack>
             </Stack>
             </Stack>

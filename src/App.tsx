@@ -1,7 +1,8 @@
 // App.tsx
 
 import React, { useState } from 'react';
-import { Grid, GridItem,Button, HStack, Show, Input } from '@chakra-ui/react';
+import form from 'react'
+import { Grid, GridItem,Button, HStack, Show, Input, useDisclosure } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import ObjectGrid from './components/ObjectGrid';
 import FacultiesList from './components/FacultiesList';
@@ -10,21 +11,27 @@ import FacultySelector from './components/FacultySelector';
 import SortSelector from './components/SortSelector';
 import { Course, DisplayQuery, Faculty } from './utils/types';
 import { type } from 'os';
-import SidebarWithHeader from './components/SideBar';
+import SidebarWithHeader, { MobileNav } from './components/SideBar';
 
 function App() {
-  let localSearchQuery = "";
+  //let localSearchQuery = "";
   const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({ faculty: null, searchQuery: "", id: '0111', type: 'faculty', sortBy: 'date' });
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
   const onClick = (course: Course) => {
     setDisplayQuery({ ...displayQuery, id: course.number, type: 'course', previous: { id: displayQuery.id, type: displayQuery.type } })
+    window.scrollTo({
+      top: -10,
+      behavior: 'auto'
+    });
   };
+
   const onBack = () => {
     if (displayQuery.previous) {
       setDisplayQuery({ ...displayQuery, id: displayQuery.previous.id, type: displayQuery.previous.type })
     }
     // pass it down all the way to GameGrid
   };
+  const [localSearchQuery, setLocalSearchQuery] = useState<string>("");
   const SortSelect = (string:string) =>{
     console.log(string);
     setDisplayQuery({...displayQuery, sortBy:string});
@@ -33,29 +40,59 @@ function App() {
     setDisplayQuery({ ...displayQuery, id: string, type: 'faculty', previous: { id: displayQuery.id, type: displayQuery.type }, searchQuery: "" })
     
   };
+  const handleSearch = () => {
+    setDisplayQuery({ ...displayQuery, searchQuery: localSearchQuery });
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+
+    console.log(event.code)
+    if (event.code === 'Enter') { // 13 is the keyCode for the Enter key
+      handleSearch();
+    }
+
+  };
+  const handleFormSubmit = (event: React.FormEvent) => {
+    event.preventDefault(); // Preventing the default form submission
+    handleSearch();
+  };
+  
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Grid w = '100%' dir="rtl"
+      <Grid 
+      width={'fit-content'}
+      dir="rtl"
         templateAreas={{ // need to fix those templates Areas / switch the UI lib
-          base: `"header header" "aside main"`
+          base: `"header header" "main main"`,
+          md: `"header header" "aside main"`
         }}
       >
-        <GridItem w={'100%'} alignItems={'center'} area="header">
+        <GridItem alignItems={'center'} area="header">
           <NavBar  onRefresh={onBack} />
-          <HStack maxWidth= {{base:'90%', md: '500px'}} spacing={'5px'} marginBottom={'5px'}>
-            <Button colorScheme="blue" onClick={onBack}>חזור</Button>
-            <Input  onChange={(e) => {localSearchQuery = e.target.value}} placeholder='הזן שם מרצה/ שם קורס / מספר קורס'></Input>
-            <Button colorScheme="blue" onClick={()=>setDisplayQuery({...displayQuery, searchQuery: localSearchQuery})}>מצא!</Button>  
-          </HStack>
+           <form onSubmit={handleFormSubmit}> 
+        <HStack justifyContent={'space-between'} maxWidth={{base:'100%', md: '500px'}} marginBottom={'25px'}>
+          <Button colorScheme="blue" onClick={onBack}>חזור</Button>
+          <Input  
+            onChange={(e) => setLocalSearchQuery(e.target.value)} 
+            placeholder='הזן שם מרצה/ שם קורס / מספר קורס'
+          />
+          <Button colorScheme="blue" onClick={handleSearch} type="submit">מצא!</Button>
+        </HStack>
+
+        </form>
         </GridItem>
         <GridItem dir="rtl" area="aside">
-            <SidebarWithHeader onSelectItem = {onSelect}/></GridItem>
+          <SidebarWithHeader isOpen = {isOpen} onOpen= {onOpen} onClose={onClose} onSelectItem = {onSelect}/></GridItem>
         <GridItem area="main">
           <HStack>
-            <SortSelector  onSelect=
+          
+       
+          <MobileNav display = {{base: '', sm: "none"}}onOpen={onOpen} />
+          <SortSelector  onSelect=
               {SortSelect} DisplayQuery={displayQuery} />
           </HStack> 
-            <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
+          <ObjectGrid onClick={onClick} DisplayQuery={displayQuery} />
         </GridItem>
       </Grid>
     </>
