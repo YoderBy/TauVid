@@ -50,7 +50,7 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
       return dateB - dateA; 
     });
   }
-  }
+}
   
 
   // get objects and renders them inside the grid
@@ -61,7 +61,6 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
     <>
     {DisplayQuery.searchQuery === ""? 
     null : <Text w = '100%'> נמצאו {ObjectToRender.length} קורסים</Text>}
-        
     <SimpleGrid
         dir="rtl"
         padding={'5px'}
@@ -79,8 +78,8 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
               <VideoCard key = {video.id} video={video as Video} />
             )
           :
-          ObjectToRender.map(course =>
-            <CourseCard key = {course.id} Course={course as Course} onClick={onClick} />
+          ObjectToRender.map((course, index) =>
+            <CourseCard key = {index} Course={course as Course} onClick={onClick} />
           )
       }
       

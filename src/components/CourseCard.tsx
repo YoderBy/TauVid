@@ -17,7 +17,7 @@ interface Props{
     Course: Course;
     onClick: (course: Course) => void;
 }
-export default function blogPostWithImage({Course, onClick} : Props) {
+const CourseCard = ({Course, onClick} : Props) => {
   return (
     <Center py={6}>
         <Box
@@ -43,25 +43,18 @@ export default function blogPostWithImage({Course, onClick} : Props) {
             fontFamily={'body'}>
                 {Course.name}
         </Heading>
-        <Text color={'green.500'}
-            fontSize={'sm'}
-            letterSpacing={1.1} noOfLines={3}> {Course.lecturer.map(lec=> lec +', ')}</Text>
-        
-        {/* {Course.lecturer.map(name =>
-          <Text
-            color={'green.500'}
-            textTransform={'uppercase'}
-            fontWeight={800}
-            fontSize={'sm'}
-            letterSpacing={1.1}>
-             {name + ','}
-          </Text>)
-        } */}
         <HStack>
-        {Course.date.map(date=>  
-        <Text color={'gray.500'}>
-            {date + ', '}
-        </Text>)}
+        <Text color={'green.500'}
+      fontSize={'sm'}
+      letterSpacing={1.1} noOfLines={3}> 
+      {Course.lecturer.map((lec, index)=> <span key={index}>{lec +', '}</span>)}
+</Text>
+
+{Course.date.map((date, index)=>  
+   <Text color={'gray.500'} key={index}>
+       {date + ', '}
+   </Text>
+)}
          </HStack>
           <Text noOfLines={3} dir='rtl' fontSize={'small'}>
             מספר סרטונים:   {Course.ids.length}</Text>
@@ -81,6 +74,8 @@ export default function blogPostWithImage({Course, onClick} : Props) {
     </Center>
   )
 }
+
+export default CourseCard
 
 // import { Text, Card, CardBody, AspectRatio,HStack, Image, Box, Link, Button } from "@chakra-ui/react"
 // import { Course } from "../utils/types"

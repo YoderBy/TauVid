@@ -1,7 +1,8 @@
 // App.tsx
 
 import React, { useState } from 'react';
-import form from 'react'
+import {useEffect} from 'react'
+
 import { Grid, GridItem,Button, HStack, Show, Input, useDisclosure } from '@chakra-ui/react';
 import NavBar from './components/NavBar';
 import ObjectGrid from './components/ObjectGrid';
@@ -18,7 +19,9 @@ function App() {
   const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({ faculty: null, searchQuery: "", id: '0111', type: 'faculty', sortBy: 'date' });
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
   const onClick = (course: Course) => {
-    setDisplayQuery({ ...displayQuery, id: course.number, type: 'course', previous: { id: displayQuery.id, type: displayQuery.type } })
+    
+    setDisplayQuery
+    ({ ...displayQuery, id: course.number, type: 'course',searchQuery:"", previous: { id: displayQuery.id, type: displayQuery.type }})
     window.scrollTo({
       top: -10,
       behavior: 'auto'
@@ -33,7 +36,6 @@ function App() {
   };
   const [localSearchQuery, setLocalSearchQuery] = useState<string>("");
   const SortSelect = (string:string) =>{
-    console.log(string);
     setDisplayQuery({...displayQuery, sortBy:string});
   }
   const onSelect = (string: string) => {
@@ -46,7 +48,6 @@ function App() {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
 
-    console.log(event.code)
     if (event.code === 'Enter') { // 13 is the keyCode for the Enter key
       handleSearch();
     }
@@ -56,6 +57,9 @@ function App() {
     event.preventDefault(); // Preventing the default form submission
     handleSearch();
   };
+  useEffect(() => {
+    console.log(displayQuery);
+  }, [displayQuery]);
   
   const { isOpen, onOpen, onClose } = useDisclosure()
   return (
@@ -86,8 +90,6 @@ function App() {
           <SidebarWithHeader isOpen = {isOpen} onOpen= {onOpen} onClose={onClose} onSelectItem = {onSelect}/></GridItem>
         <GridItem area="main">
           <HStack>
-          
-       
           <MobileNav display = {{base: '', sm: "none"}}onOpen={onOpen} />
           <SortSelector  onSelect=
               {SortSelect} DisplayQuery={displayQuery} />
