@@ -48,11 +48,13 @@ export interface Video {
     facultyNumber?: string;
   }
   export interface Course {
+
     id: number,
     number: string,
     name: string,
     ids: number[],
     lecturer: string[],
     date: string[],
+    year?: number,
     faculty: string[],
 }

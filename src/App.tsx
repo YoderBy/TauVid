@@ -15,9 +15,12 @@ import { type } from 'os';
 import SidebarWithHeader, { MobileNav } from './components/SideBar';
 
 function App() {
+
   //let localSearchQuery = "";
   const [displayQuery, setDisplayQuery] = useState<DisplayQuery>({ faculty: null, searchQuery: "", id: '0111', type: 'faculty', sortBy: 'date' });
   //this object store the faculty selection and the refreshing state, later it will store some courses info and such
+  
+  const [localSearchQuery, setLocalSearchQuery] = useState<string>("");
   const onClick = (course: Course) => {
     
     setDisplayQuery
@@ -34,7 +37,6 @@ function App() {
     }
     // pass it down all the way to GameGrid
   };
-  const [localSearchQuery, setLocalSearchQuery] = useState<string>("");
   const SortSelect = (string:string) =>{
     setDisplayQuery({...displayQuery, sortBy:string});
   }

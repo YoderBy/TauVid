@@ -6,6 +6,7 @@ import VideoCard from './VideoCard';
 import CourseCard from './CourseCard';
 import { isVideo, timeToSeconds } from '../utils/helpersFunctions';
 import { MobileNav } from './SideBar';
+import { useEffect } from 'react';
 interface Props {
   DisplayQuery: DisplayQuery;
   onClick: (course: Course) => void;
@@ -13,6 +14,10 @@ interface Props {
 
 const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
   let ObjectToRender = useFetchObjects(DisplayQuery)
+  
+  useEffect(() => {
+    console.log(DisplayQuery);
+  }, [DisplayQuery]);
   
 
 
@@ -50,6 +55,7 @@ const ObjectGrid: React.FC<Props> = ({ DisplayQuery, onClick }) => {
       return dateB - dateA; 
     });
   }
+  
 }
   
 

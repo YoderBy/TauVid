@@ -16,7 +16,7 @@ const NavBar: React.FC<Props> = ({ onRefresh }) => {
     <HStack justifyContent={'space-between'} padding={'5px'}>
 
       <ColorModeSwitch />
-      <Heading fontSize={'xx-small'}>יוסף בן יהודה</Heading>
+      <Heading fontSize={'xx-small'}>יוסף בן יהודה | אשמח להצעות לשיפור. צרו קשר במייל yosefydb@gmail.com</Heading>
 
     </HStack>
   );
