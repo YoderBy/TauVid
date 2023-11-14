@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/TauVid/static/css/main.31d6cfe0.css",
-    "main.js": "/TauVid/static/js/main.f967ee39.js",
+    "main.js": "/TauVid/static/js/main.f3c543be.js",
     "static/js/787.f7d43f86.chunk.js": "/TauVid/static/js/787.f7d43f86.chunk.js",
     "index.html": "/TauVid/index.html",
-    "main.f967ee39.js.map": "/TauVid/static/js/main.f967ee39.js.map",
+    "main.f3c543be.js.map": "/TauVid/static/js/main.f3c543be.js.map",
     "787.f7d43f86.chunk.js.map": "/TauVid/static/js/787.f7d43f86.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.f967ee39.js"
+    "static/js/main.f3c543be.js"
   ]
 }
